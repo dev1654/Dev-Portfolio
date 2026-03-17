@@ -23,7 +23,11 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSending(true)
-    await new Promise((r) => setTimeout(r, 1500))
+    await fetch('https://formspree.io/f/mvzwvvaz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formState),
+    })
     setSending(false)
     setSent(true)
   }
