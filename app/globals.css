@@ -114,19 +114,10 @@ img { max-width: 100%; display: block; }
   section { padding-left: 40px !important; padding-right: 40px !important; }
 }
 
-/* ── Tablet (900px) — collapse heavy grids ── */
+/* ── Tablet (900px) — collapse skill grids ── */
 @media (max-width: 900px) {
   nav { padding: 0 32px !important; }
-
-  div[style*="grid-template-columns: 55% 45%"],
-  div[style*="grid-template-columns: 1fr 1.2fr"],
-  div[style*="grid-template-columns: 3fr 2fr"],
-  div[style*="grid-template-columns: 2fr 3fr"],
-  div[style*="grid-template-columns: 1fr 2fr 1fr"],
-  div[style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-    gap: 40px !important;
-  }
+  .resp-tab { grid-template-columns: 1fr !important; gap: 1px !important; }
 }
 
 /* ── Mobile (768px) ── */
@@ -153,24 +144,10 @@ img { max-width: 100%; display: block; }
   h1 { font-size: clamp(52px, 14vw, 120px) !important; letter-spacing: -0.02em !important; }
   h2 { font-size: clamp(36px, 8vw, 72px) !important; }
 
-  div[style*="grid-template-columns: 1fr 1fr"],
-  div[style*="grid-template-columns: 320px 1fr"],
-  div[style*="grid-template-columns: 1fr 1.2fr"],
-  div[style*="grid-template-columns: 1fr auto"],
-  div[style*="grid-template-columns: 3fr 2fr"],
-  div[style*="grid-template-columns: 2fr 3fr"],
-  div[style*="grid-template-columns: repeat(4, 1fr)"],
-  div[style*="grid-template-columns: repeat(3, 1fr)"],
-  div[style*="grid-template-columns: repeat(2, 1fr)"],
-  div[style*="grid-template-columns: 1fr 2fr 1fr"],
-  div[style*="grid-template-columns: 1fr 1.4fr 1fr"] {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
-
-  div[style*="grid-template-columns: repeat(auto-fill"] {
-    grid-template-columns: 1fr !important;
-  }
+  /* class-based grid collapse — reliable on all React inline styles */
+  .resp-2col      { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .resp-form-row  { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .resp-tab       { grid-template-columns: 1fr !important; gap: 1px !important; }
 }
 
 @media (max-width: 480px) {

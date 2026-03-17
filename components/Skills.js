@@ -194,13 +194,13 @@ export default function Skills() {
         </motion.h2>
 
         {/* Row 1: Frontend (3fr) + Backend (2fr) */}
-        <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '1px', marginBottom: '1px' }}>
+        <div className="resp-tab" style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '1px', marginBottom: '1px' }}>
           <SkillCell row={skillGrid[0]} inView={inView} delay={0.15} />
           <SkillCell row={skillGrid[1]} inView={inView} delay={0.22} />
         </div>
 
         {/* Row 2: Database (2fr) + Cloud (3fr) */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 3fr', gap: '1px', marginBottom: '1px' }}>
+        <div className="resp-tab" style={{ display: 'grid', gridTemplateColumns: '2fr 3fr', gap: '1px', marginBottom: '1px' }}>
           <SkillCell row={skillGrid[2]} inView={inView} delay={0.30} />
           <SkillCell row={skillGrid[3]} inView={inView} delay={0.37} />
         </div>

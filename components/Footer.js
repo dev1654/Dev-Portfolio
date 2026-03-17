@@ -24,7 +24,7 @@ export default function Footer() {
     }}>
 
       {/* Main footer row */}
-      <div style={{
+      <div className="resp-2col" style={{
         maxWidth:        '1200px',
         margin:          '0 auto',
         display:         'grid',

@@ -138,7 +138,7 @@ export default function Contact() {
         </motion.p>
 
         {/* Main layout: left info + right form */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '72px', alignItems: 'start' }}>
+        <div className="resp-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '72px', alignItems: 'start' }}>
 
           {/* ── Left — contact info ── */}
           <div>
@@ -281,7 +281,7 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+                <div className="resp-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
                   <div>
                     <label style={labelStyle}>Your Name</label>
                     <input type="text" name="name" required placeholder="John Smith"

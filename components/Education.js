@@ -125,7 +125,7 @@ export default function Education() {
         </motion.h2>
 
         {/* Two cards side by side */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '48px' }}>
+        <div className="resp-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '48px' }}>
           {education.map((edu, i) => (
             <motion.div
               key={edu.id}

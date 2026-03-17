@@ -362,7 +362,7 @@ export default function Projects() {
                       transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
                       style={{ overflow: 'hidden' }}
                     >
-                      <div style={{
+                      <div className="resp-2col" style={{
                         display:      'grid',
                         gridTemplateColumns: '1fr 1fr',
                         gap:          '48px',
