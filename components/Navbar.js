@@ -68,10 +68,10 @@ export default function Navbar() {
         justifyContent:     'space-between',
         padding:            '0 60px',
         height:             '64px',
-        background:         scrolled ? 'var(--nav-bg)' : 'transparent',
-        backdropFilter:     scrolled ? 'blur(24px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'none',
-        borderBottom:       scrolled ? '1px solid var(--border)' : '1px solid transparent',
+        background:         scrolled || menuOpen ? 'var(--nav-bg)' : 'transparent',
+        backdropFilter:     scrolled || menuOpen ? 'blur(24px)' : 'none',
+        WebkitBackdropFilter: scrolled || menuOpen ? 'blur(24px)' : 'none',
+        borderBottom:       scrolled || menuOpen ? '1px solid var(--border)' : '1px solid transparent',
         transition:         'all 0.3s ease',
       }}>
 
@@ -86,8 +86,8 @@ export default function Navbar() {
           DEV<span style={{ color: 'var(--muted)' }}>.</span>
         </a>
 
-        {/* Nav links */}
-        <ul style={{ display: 'flex', gap: '32px', listStyle: 'none' }}>
+        {/* Nav links — desktop */}
+        <ul className="nav-desktop-links" style={{ display: 'flex', gap: '32px', listStyle: 'none' }}>
           {links.map((link) => {
             const id = link.href.replace('#', '')
             const isActive = activeSection === id
@@ -116,8 +116,8 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Right — theme toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        {/* Right — theme toggle + CTA (desktop) */}
+        <div className="nav-desktop-right" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           {mounted && (
             <button
               onClick={toggleTheme}
@@ -162,7 +162,115 @@ export default function Navbar() {
             Let&apos;s Talk
           </a>
         </div>
+
+        {/* Hamburger — mobile only */}
+        <button
+          className="nav-hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            display:        'none',
+            flexDirection:  'column',
+            gap:            '5px',
+            background:     'transparent',
+            border:         'none',
+            padding:        '4px',
+            cursor:         'pointer',
+          }}
+        >
+          <span style={{
+            width: '22px', height: '2px', background: 'var(--heading)', display: 'block',
+            transition: 'transform 0.25s',
+            transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
+          }} />
+          <span style={{
+            width: '22px', height: '2px', background: 'var(--heading)', display: 'block',
+            transition: 'opacity 0.25s',
+            opacity: menuOpen ? 0 : 1,
+          }} />
+          <span style={{
+            width: '22px', height: '2px', background: 'var(--heading)', display: 'block',
+            transition: 'transform 0.25s',
+            transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
+          }} />
+        </button>
       </nav>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div style={{
+          position:       'fixed',
+          top:            '64px',
+          left:           0,
+          right:          0,
+          zIndex:         99,
+          background:     'var(--nav-bg)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          borderBottom:   '1px solid var(--border)',
+          padding:        '28px 24px 36px',
+          display:        'flex',
+          flexDirection:  'column',
+          gap:            '0',
+        }}>
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '13px',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color:         activeSection === link.href.replace('#','') ? 'var(--accent)' : 'var(--muted)',
+                padding:       '16px 0',
+                borderBottom:  '1px solid var(--border)',
+                display:       'block',
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '28px' }}>
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '11px',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color:         'var(--bg)',
+                background:    'var(--accent)',
+                padding:       '12px 28px',
+                textDecoration:'none',
+              }}
+            >
+              Let&apos;s Talk
+            </a>
+            {mounted && (
+              <button
+                onClick={toggleTheme}
+                style={{
+                  background:    'transparent',
+                  border:        '1px solid var(--border)',
+                  width:         '40px',
+                  height:        '40px',
+                  borderRadius:  '50%',
+                  display:       'flex',
+                  alignItems:    'center',
+                  justifyContent:'center',
+                  cursor:        'pointer',
+                  fontSize:      '16px',
+                  color:         'var(--subtext)',
+                }}
+              >
+                {theme === 'dark' ? '☀' : '☾'}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </>
   )
 }

@@ -7,8 +7,14 @@ export default function Cursor() {
   const [trail, setTrail]       = useState({ x: -100, y: -100 })
   const [clicking, setClicking] = useState(false)
   const [hovering, setHovering] = useState(false)
+  const [visible, setVisible]   = useState(false)
 
   useEffect(() => {
+    const isTouch  = window.matchMedia('(pointer: coarse)').matches
+    const isNarrow = window.innerWidth < 1024
+    if (isTouch || isNarrow) return
+    setVisible(true)
+
     let animFrame
     let trailX = -100, trailY = -100
     let curX   = -100, curY   = -100
@@ -50,6 +56,8 @@ export default function Cursor() {
       obs.disconnect()
     }
   }, [])
+
+  if (!visible) return null
 
   return (
     <>
