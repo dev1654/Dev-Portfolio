@@ -148,6 +148,12 @@ img { max-width: 100%; display: block; }
   .resp-2col      { grid-template-columns: 1fr !important; gap: 32px !important; }
   .resp-form-row  { grid-template-columns: 1fr !important; gap: 12px !important; }
   .resp-tab       { grid-template-columns: 1fr !important; gap: 1px !important; }
+
+  /* project row — hide tag & year, allow title to wrap */
+  .proj-tag      { display: none !important; }
+  .proj-year     { display: none !important; }
+  .proj-title    { white-space: normal !important; }
+  .proj-subtitle { display: none !important; }
 }
 
 @media (max-width: 480px) {

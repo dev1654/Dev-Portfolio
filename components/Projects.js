@@ -255,7 +255,7 @@ export default function Projects() {
                       {project.num}
                     </span>
                     <div style={{ minWidth: 0 }}>
-                      <div style={{
+                      <div className="proj-title" style={{
                         fontFamily:    'var(--font-display)',
                         fontSize:      'clamp(22px, 3vw, 42px)',
                         fontWeight:    800,
@@ -267,7 +267,7 @@ export default function Projects() {
                       }}>
                         {project.title}
                       </div>
-                      <div style={{
+                      <div className="proj-subtitle" style={{
                         fontFamily:   'var(--font-body)',
                         fontSize:     '13px',
                         color:        'var(--muted)',
@@ -283,7 +283,7 @@ export default function Projects() {
 
                   {/* Right: tag + year + links + toggle */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexShrink: 0 }}>
-                    <span style={{
+                    <span className="proj-tag" style={{
                       fontFamily:    'var(--font-mono)',
                       fontSize:      '9px',
                       color:         project.color,
@@ -295,7 +295,7 @@ export default function Projects() {
                     }}>
                       {project.tag}
                     </span>
-                    <span style={{
+                    <span className="proj-year" style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize:   '11px',
                       color:      'var(--muted)',
@@ -317,7 +317,7 @@ export default function Projects() {
                         onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
                         onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
                       >
-                        GitHub ↗
+                        ↗
                       </a>
                     )}
                     {project.live && (
