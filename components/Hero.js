@@ -6,8 +6,8 @@ import { motion } from 'framer-motion'
 const roles = [
   'Full Stack Developer',
   'MERN Stack Engineer',
-  'Cloud Enthusiast',
-  'Problem Solver',
+  'Android Developer',
+  'AI / ML Engineer',
 ]
 
 export default function Hero() {
@@ -205,8 +205,8 @@ export default function Hero() {
             marginBottom: '44px',
             maxWidth:     '380px',
           }}>
-            PG student at Humber College building scalable web apps with the MERN stack.
-            Internship-proven. Cloud-curious. Shipping real products.
+            Full Stack Developer, Humber Polytechnic graduate (Apr 2026).
+            Internship-proven. Building production apps across MERN, Spring Boot, and AI.
           </p>
 
           <a
@@ -245,10 +245,10 @@ export default function Hero() {
           }}
         >
           {[
-            { number: '2+',   label: 'Years Coding' },
+            { number: '3+',   label: 'Years Coding' },
             { number: '6mo',  label: 'Internship @ Stackss' },
             { number: '8.12', label: 'CGPA — Silver Oak' },
-            { number: '15+',  label: 'Skills & Technologies' },
+            { number: '30+',  label: 'Skills & Technologies' },
           ].map((stat) => (
             <div key={stat.label} style={{ padding: '24px 20px', background: 'var(--bg)' }}>
               <div style={{

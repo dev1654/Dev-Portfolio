@@ -8,36 +8,43 @@ const skillGrid = [
     id: 0,
     num: '01',
     category: 'Frontend',
-    skills: ['React.js', 'JavaScript', 'TypeScript', 'HTML / CSS', 'Tailwind CSS', 'Bootstrap'],
-    span: 'wide',   // 3fr
+    skills: ['React.js', 'Next.js', 'React Native', 'TypeScript', 'JavaScript', 'Vite', 'Tailwind CSS', 'Redux Toolkit', 'TanStack Query', 'Electron.js'],
+    span: 'wide',
   },
   {
     id: 1,
     num: '02',
     category: 'Backend',
-    skills: ['Node.js', 'Express.js', 'Java', 'Spring Boot', 'REST APIs'],
-    span: 'narrow', // 2fr
+    skills: ['Node.js', 'Express.js', 'Fastify', 'FastAPI', 'Spring Boot', 'REST APIs', 'Socket.io', 'JWT'],
+    span: 'narrow',
   },
   {
     id: 2,
     num: '03',
     category: 'Database',
-    skills: ['MongoDB', 'PostgreSQL', 'Oracle DB', 'Hibernate', 'PL/SQL'],
-    span: 'narrow', // 2fr
+    skills: ['PostgreSQL', 'MongoDB', 'Supabase', 'Firebase', 'Prisma ORM', 'Redis', 'Room DB', 'Hibernate'],
+    span: 'narrow',
   },
   {
     id: 3,
     num: '04',
-    category: 'Cloud & Tools',
-    skills: ['AWS', 'Firebase', 'Git / GitHub', 'Maven', 'Agile / Scrum'],
-    span: 'wide',   // 3fr
+    category: 'Cloud & DevOps',
+    skills: ['AWS (EC2, S3, Lambda)', 'Docker', 'GitHub Actions', 'CI/CD', 'Vercel', 'Render', 'Git / GitHub', 'Maven'],
+    span: 'wide',
   },
   {
     id: 4,
     num: '05',
+    category: 'AI & ML',
+    skills: ['PyTorch', 'EfficientNet-B0', 'ResNet18', 'Grad-CAM', 'HuggingFace', 'Claude API', 'Transfer Learning'],
+    span: 'wide',
+  },
+  {
+    id: 5,
+    num: '06',
     category: 'Mobile',
-    skills: ['Kotlin', 'Jetpack Compose', 'Retrofit + Gson', 'Coil', 'MVVM'],
-    span: 'full',   // full row
+    skills: ['Kotlin', 'Room DB', 'Firebase Auth', 'Google Maps SDK', 'Retrofit', 'Material Design 3'],
+    span: 'narrow',
   },
 ]
 
@@ -205,8 +212,11 @@ export default function Skills() {
           <SkillCell row={skillGrid[3]} inView={inView} delay={0.37} />
         </div>
 
-        {/* Row 3: Mobile (full width) */}
-        <SkillCell row={skillGrid[4]} inView={inView} delay={0.45} />
+        {/* Row 3: AI & ML (3fr) + Mobile (2fr) */}
+        <div className="resp-tab" style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '1px' }}>
+          <SkillCell row={skillGrid[4]} inView={inView} delay={0.45} />
+          <SkillCell row={skillGrid[5]} inView={inView} delay={0.52} />
+        </div>
 
       </div>
     </section>

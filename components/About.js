@@ -4,20 +4,20 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const interests = [
-  'Full Stack Development', 'Cloud Computing', 'Database Design',
-  'Software Engineering', 'System Analysis', 'Agile Teams',
+  'Full Stack Development', 'AI & Machine Learning', 'Cloud Computing',
+  'Android Development', 'Database Design', 'Software Engineering',
 ]
 
 const stats = [
-  { num: '2+',   label: 'Years\nCoding' },
+  { num: '3+',   label: 'Years\nCoding' },
   { num: '6mo',  label: 'Internship\n@ Stackss' },
   { num: '8.12', label: 'CGPA\nSilver Oak' },
 ]
 
 const currently = [
-  { active: true,  text: 'PG Student — IT Solutions, Humber College (2024–2026)' },
+  { active: false, text: 'Graduate — IT Solutions, Humber Polytechnic (Apr 2026)' },
   { active: true,  text: 'Part-time @ Walmart Canada — Customer Service & Cashier' },
-  { active: false, text: 'Open to Full Stack & Cloud Developer roles' },
+  { active: true,  text: 'Open to Full Stack & Backend Developer roles — Available immediately' },
 ]
 
 export default function About() {
@@ -97,10 +97,10 @@ export default function About() {
               marginBottom: '20px',
               fontWeight:   300,
             }}>
-              I am a passionate Information Technology Solutions student at Humber Polytechnic,
-              specializing in Full Stack Development, Cloud Computing, and Database Management.
-              My academic and real-world experience has built a strong foundation in software
-              development, system design, and modern web technologies.
+              Full Stack Developer and Humber Polytechnic graduate (April 2026), specializing in
+              Full Stack Development, Cloud Computing, and Machine Learning. Led a 4-person capstone
+              team to deliver a production marketplace and built AI-powered apps with 98%+ accuracy —
+              strong foundation across the full software lifecycle.
             </motion.p>
 
             <motion.p {...reveal(0.28)} style={{
@@ -110,9 +110,9 @@ export default function About() {
               marginBottom: '44px',
               fontWeight:   300,
             }}>
-              During my internship at Stackss, I gained hands-on experience building and
-              maintaining MERN stack applications, designing RESTful APIs, and collaborating
-              in agile teams — sharpening both my technical skills and problem-solving mindset.
+              During my 6-month internship at Stackss, I built and shipped MERN stack applications
+              across the full development lifecycle. Since then I have expanded into Java Spring Boot,
+              AI/ML with PyTorch, and cross-platform mobile — always shipping real, deployed products.
             </motion.p>
 
             {/* Interests */}

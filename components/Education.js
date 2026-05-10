@@ -12,13 +12,13 @@ const education = [
     field:       'Information Technology Solutions',
     location:    'Toronto, Ontario, Canada',
     period:      'Sep 2024 — Apr 2026',
-    status:      'In Progress',
-    statusActive: true,
+    status:      'Graduated',
+    statusActive: false,
     gpa:         null,
     highlights: [
-      'Specializing in Full Stack Development, Cloud Computing, and Database Management.',
-      'Built ArtFinder (Android / Kotlin / Firebase) and VMS (Spring Boot / React / PostgreSQL) as major projects.',
-      'Coursework covers Machine Learning, Big Data, Android Dev, and Advanced Operating Systems.',
+      'Graduated April 2026 — Specializing in Full Stack Development, Cloud Computing, and Machine Learning.',
+      'Capstone Team Lead: delivered Giftelle marketplace (React, React Native, Supabase, Stripe) with a 4-person team.',
+      'Major projects: ExamLock (Claude API + Electron), NeuroScan (98.31% MRI classifier), VMS (Spring Boot + React).',
     ],
     courses: [
       'Advanced Java Programming', 'Data Structures & Design Patterns', 'Big Data',
