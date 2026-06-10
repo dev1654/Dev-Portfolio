@@ -23,6 +23,49 @@ export default function Footer() {
       padding:    '0 60px',
     }}>
 
+      {/* Statement row */}
+      <div style={{
+        maxWidth:     '1200px',
+        margin:       '0 auto',
+        padding:      '88px 0 72px',
+        borderBottom: '1px solid var(--border)',
+        display:      'flex',
+        alignItems:   'flex-end',
+        justifyContent: 'space-between',
+        gap:          '32px',
+        flexWrap:     'wrap',
+      }}>
+        <div style={{
+          fontFamily: 'var(--font-display)',
+          fontSize:   'clamp(40px, 6vw, 84px)',
+          fontWeight: 600,
+          color:      'var(--heading)',
+          lineHeight: 1.05,
+        }}>
+          Have an idea?<br />
+          <em style={{ fontStyle: 'italic', fontWeight: 500, color: 'var(--accent)' }}>Let&apos;s build it.</em>
+        </div>
+        <a
+          href="#"
+          style={{
+            fontFamily:    'var(--font-mono)',
+            fontSize:      '10px',
+            color:         'var(--muted)',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            display:       'flex',
+            alignItems:    'center',
+            gap:           '10px',
+            transition:    'color 0.25s',
+            paddingBottom: '8px',
+          }}
+          onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+          onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
+        >
+          Back to top <span style={{ fontSize: '14px' }}>↑</span>
+        </a>
+      </div>
+
       {/* Main footer row */}
       <div className="resp-2col" style={{
         maxWidth:        '1200px',
@@ -37,15 +80,15 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <div style={{
-            fontFamily:    'var(--font-display)',
-            fontSize:      '44px',
-            fontWeight:    800,
-            color:         'var(--accent)',
-            lineHeight:    1,
-            letterSpacing: '-0.02em',
-            marginBottom:  '12px',
+            fontFamily:   'var(--font-display)',
+            fontStyle:    'italic',
+            fontSize:     '40px',
+            fontWeight:   600,
+            color:        'var(--accent)',
+            lineHeight:   1,
+            marginBottom: '12px',
           }}>
-            DEV<span style={{ color: 'var(--muted)' }}>.</span>
+            Dev<span style={{ color: 'var(--muted)' }}>.</span>
           </div>
           <p style={{
             fontFamily:  'var(--font-body)',

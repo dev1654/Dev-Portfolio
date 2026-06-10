@@ -9,9 +9,9 @@ const interests = [
 ]
 
 const stats = [
-  { num: '3+',   label: 'Years\nCoding' },
-  { num: '6mo',  label: 'Internship\n@ Stackss' },
-  { num: '8.12', label: 'CGPA\nSilver Oak' },
+  { num: '3+',   label: 'Years Coding' },
+  { num: '6mo',  label: 'Internship @ Stackss' },
+  { num: '8.12', label: 'CGPA — Silver Oak' },
 ]
 
 const currently = [
@@ -25,26 +25,26 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   const reveal = (delay) => ({
-    initial:    { opacity: 0, y: 32 },
-    animate:    inView ? { opacity: 1, y: 0 } : {},
-    transition: { duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+    initial:    { opacity: 0, y: 28, filter: 'blur(6px)' },
+    animate:    inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {},
+    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
   })
 
   return (
-    <section id="about" ref={ref} style={{ padding: '120px 60px', position: 'relative', overflow: 'hidden' }}>
+    <section id="about" ref={ref} style={{ padding: '140px 60px', position: 'relative', overflow: 'hidden' }}>
 
-      {/* Big watermark number */}
+      {/* Watermark — serif italic, top right */}
       <div style={{
         position:      'absolute',
-        top:           '-20px',
-        left:          '40px',
+        top:           '-30px',
+        right:         '40px',
         fontFamily:    'var(--font-display)',
+        fontStyle:     'italic',
         fontSize:      'clamp(160px, 22vw, 320px)',
-        fontWeight:    800,
+        fontWeight:    700,
         color:         'var(--accent)',
-        opacity:       0.04,
+        opacity:       0.05,
         lineHeight:    1,
-        letterSpacing: '-0.04em',
         pointerEvents: 'none',
         userSelect:    'none',
       }}>
@@ -72,29 +72,60 @@ export default function About() {
           <div style={{ width: '80px', height: '1px', background: 'var(--accent)', opacity: 0.3 }} />
         </motion.div>
 
-        {/* Two-column layout */}
-        <div className="resp-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+        {/* Asymmetric editorial split */}
+        <div className="resp-2col" style={{ display: 'grid', gridTemplateColumns: '5fr 7fr', gap: '90px', alignItems: 'start' }}>
 
-          {/* Left — heading + bio */}
+          {/* ── Left — heading + stats ── */}
           <div>
             <motion.h2 {...reveal(0.1)} style={{
-              fontFamily:    'var(--font-display)',
-              fontSize:      'clamp(40px, 4.5vw, 64px)',
-              color:         'var(--heading)',
-              lineHeight:    0.92,
-              marginBottom:  '40px',
-              letterSpacing: '-0.02em',
+              fontFamily:   'var(--font-display)',
+              fontSize:     'clamp(42px, 4.8vw, 68px)',
+              fontWeight:   600,
+              color:        'var(--heading)',
+              lineHeight:   1.06,
+              marginBottom: '36px',
             }}>
-              BUILDING<br />
-              THE WEB<br />
-              <span style={{ color: 'var(--accent)' }}>THAT WORKS.</span>
+              Building the web<br />
+              <em>that works.</em>
             </motion.h2>
 
-            <motion.p {...reveal(0.2)} style={{
-              fontSize:     '16px',
-              color:        'var(--subtext)',
-              lineHeight:   1.85,
-              marginBottom: '20px',
+            <motion.div {...reveal(0.18)} style={{ width: '64px', height: '2px', background: 'var(--accent)', marginBottom: '56px' }} />
+
+            {/* Stats — open serif numerals, no boxes */}
+            <motion.div {...reveal(0.26)} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+              {stats.map((s) => (
+                <div key={s.num} style={{ display: 'flex', alignItems: 'baseline', gap: '20px', borderBottom: '1px solid var(--border)', paddingBottom: '20px' }}>
+                  <div style={{
+                    fontFamily:    'var(--font-display)',
+                    fontSize:      'clamp(38px, 4vw, 56px)',
+                    fontWeight:    700,
+                    color:         'var(--accent)',
+                    lineHeight:    1,
+                    minWidth:      '120px',
+                  }}>
+                    {s.num}
+                  </div>
+                  <div style={{
+                    fontFamily:    'var(--font-mono)',
+                    fontSize:      '10px',
+                    color:         'var(--muted)',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                  }}>
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* ── Right — drop-cap bio + focus index + currently ── */}
+          <div>
+            <motion.p {...reveal(0.2)} className="dropcap" style={{
+              fontSize:     '17px',
+              color:        'var(--text)',
+              lineHeight:   1.9,
+              marginBottom: '24px',
               fontWeight:   300,
             }}>
               Full Stack Developer and Humber Polytechnic graduate (April 2026), specializing in
@@ -107,7 +138,7 @@ export default function About() {
               fontSize:     '16px',
               color:        'var(--subtext)',
               lineHeight:   1.85,
-              marginBottom: '44px',
+              marginBottom: '56px',
               fontWeight:   300,
             }}>
               During my 6-month internship at Stackss, I built and shipped MERN stack applications
@@ -115,79 +146,58 @@ export default function About() {
               AI/ML with PyTorch, and cross-platform mobile — always shipping real, deployed products.
             </motion.p>
 
-            {/* Interests */}
-            <motion.div {...reveal(0.36)} style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {interests.map((item) => (
-                <span key={item} style={{
-                  fontFamily:    'var(--font-mono)',
-                  fontSize:      '11px',
-                  color:         'var(--accent)',
-                  background:    'var(--accent-dim)',
-                  border:        '1px solid var(--tag-border)',
-                  padding:       '6px 14px',
-                  letterSpacing: '0.05em',
-                }}>
-                  {item}
-                </span>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Right — stats + currently */}
-          <div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              style={{
-                display:      'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                borderTop:    '1px solid var(--border)',
-                borderLeft:   '1px solid var(--border)',
-                marginBottom: '52px',
-              }}
-            >
-              {stats.map((s, i) => (
+            {/* Focus areas — numbered index, replaces pill tags */}
+            <motion.div {...reveal(0.36)} style={{ marginBottom: '56px' }}>
+              <div style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '10px',
+                color:         'var(--muted)',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                marginBottom:  '8px',
+                display:       'flex',
+                alignItems:    'center',
+                gap:           '14px',
+              }}>
+                Focus Areas
+                <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+              </div>
+              {interests.map((item, i) => (
                 <div
-                  key={s.num}
+                  key={item}
                   style={{
-                    padding:      '28px 16px',
-                    borderRight:  '1px solid var(--border)',
+                    display:      'flex',
+                    alignItems:   'baseline',
+                    gap:          '20px',
+                    padding:      '14px 0',
                     borderBottom: '1px solid var(--border)',
-                    transition:   'background 0.2s',
+                    transition:   'padding-left 0.25s ease',
                   }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'var(--card-hover)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                  onMouseEnter={e => e.currentTarget.style.paddingLeft = '12px'}
+                  onMouseLeave={e => e.currentTarget.style.paddingLeft = '0px'}
                 >
-                  <div style={{
-                    fontFamily:    'var(--font-display)',
-                    fontSize:      'clamp(36px, 4vw, 56px)',
-                    color:         'var(--accent)',
-                    lineHeight:    1,
-                    marginBottom:  '8px',
-                    letterSpacing: '-0.02em',
-                  }}>
-                    {s.num}
-                  </div>
-                  <div style={{
+                  <span style={{
                     fontFamily:    'var(--font-mono)',
-                    fontSize:      '9px',
-                    color:         'var(--muted)',
+                    fontSize:      '10px',
+                    color:         'var(--accent)',
                     letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    lineHeight:    1.6,
-                    whiteSpace:    'pre-line',
                   }}>
-                    {s.label}
-                  </div>
+                    0{i + 1}
+                  </span>
+                  <span style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize:   '19px',
+                    fontWeight: 500,
+                    color:      'var(--heading)',
+                  }}>
+                    {item}
+                  </span>
                 </div>
               ))}
             </motion.div>
 
             {/* Currently */}
-            <motion.div {...reveal(0.42)}>
+            <motion.div {...reveal(0.44)}>
               <div style={{
                 fontFamily:    'var(--font-mono)',
                 fontSize:      '10px',
@@ -207,12 +217,12 @@ export default function About() {
                 {currently.map((item, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
                     <div style={{
-                      width:      '8px',
-                      height:     '8px',
+                      width:        '8px',
+                      height:       '8px',
                       borderRadius: '50%',
                       background:   item.active ? 'var(--accent)' : 'transparent',
                       border:       `1px solid ${item.active ? 'var(--accent)' : 'var(--muted)'}`,
-                      marginTop:    '5px',
+                      marginTop:    '6px',
                       flexShrink:   0,
                       animation:    item.active ? 'aboutPulse 2.5s infinite' : 'none',
                     }} />

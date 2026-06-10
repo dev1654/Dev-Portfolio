@@ -9,126 +9,38 @@ const skillGrid = [
     num: '01',
     category: 'Frontend',
     skills: ['React.js', 'Next.js', 'React Native', 'TypeScript', 'JavaScript', 'Vite', 'Tailwind CSS', 'Redux Toolkit', 'TanStack Query', 'Electron.js'],
-    span: 'wide',
   },
   {
     id: 1,
     num: '02',
     category: 'Backend',
     skills: ['Node.js', 'Express.js', 'Fastify', 'FastAPI', 'Spring Boot', 'REST APIs', 'Socket.io', 'JWT'],
-    span: 'narrow',
   },
   {
     id: 2,
     num: '03',
     category: 'Database',
     skills: ['PostgreSQL', 'MongoDB', 'Supabase', 'Firebase', 'Prisma ORM', 'Redis', 'Room DB', 'Hibernate'],
-    span: 'narrow',
   },
   {
     id: 3,
     num: '04',
     category: 'Cloud & DevOps',
     skills: ['AWS (EC2, S3, Lambda)', 'Docker', 'GitHub Actions', 'CI/CD', 'Vercel', 'Render', 'Git / GitHub', 'Maven'],
-    span: 'wide',
   },
   {
     id: 4,
     num: '05',
     category: 'AI & ML',
     skills: ['PyTorch', 'EfficientNet-B0', 'ResNet18', 'Grad-CAM', 'HuggingFace', 'Claude API', 'Transfer Learning'],
-    span: 'wide',
   },
   {
     id: 5,
     num: '06',
     category: 'Mobile',
     skills: ['Kotlin', 'Room DB', 'Firebase Auth', 'Google Maps SDK', 'Retrofit', 'Material Design 3'],
-    span: 'narrow',
   },
 ]
-
-function SkillCell({ row, inView, delay }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-      style={{
-        padding:    '36px 40px',
-        border:     '1px solid var(--border)',
-        position:   'relative',
-        overflow:   'hidden',
-        transition: 'background 0.3s ease',
-        background: 'var(--card-bg)',
-      }}
-      onMouseEnter={e => e.currentTarget.style.background = 'var(--card-hover)'}
-      onMouseLeave={e => e.currentTarget.style.background = 'var(--card-bg)'}
-    >
-      {/* Big background number */}
-      <div style={{
-        position:      'absolute',
-        top:           '-16px',
-        right:         '24px',
-        fontFamily:    'var(--font-display)',
-        fontSize:      '120px',
-        fontWeight:    800,
-        color:         'var(--accent)',
-        opacity:       0.05,
-        lineHeight:    1,
-        letterSpacing: '-0.04em',
-        pointerEvents: 'none',
-        userSelect:    'none',
-      }}>
-        {row.num}
-      </div>
-
-      {/* Category label */}
-      <div style={{
-        fontFamily:    'var(--font-mono)',
-        fontSize:      '10px',
-        color:         'var(--accent)',
-        letterSpacing: '0.2em',
-        textTransform: 'uppercase',
-        marginBottom:  '8px',
-        opacity:       0.7,
-      }}>
-        {row.num}
-      </div>
-
-      {/* Category name */}
-      <div style={{
-        fontFamily:    'var(--font-display)',
-        fontSize:      'clamp(26px, 3vw, 40px)',
-        fontWeight:    800,
-        color:         'var(--heading)',
-        letterSpacing: '-0.02em',
-        lineHeight:    1,
-        marginBottom:  '28px',
-      }}>
-        {row.category.toUpperCase()}
-      </div>
-
-      {/* Skill pills */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-        {row.skills.map((skill) => (
-          <span key={skill} style={{
-            fontFamily:    'var(--font-mono)',
-            fontSize:      '11px',
-            color:         'var(--subtext)',
-            background:    'var(--tag-bg)',
-            border:        '1px solid var(--tag-border)',
-            padding:       '6px 13px',
-            letterSpacing: '0.04em',
-            transition:    'all 0.2s',
-          }}>
-            {skill}
-          </span>
-        ))}
-      </div>
-    </motion.div>
-  )
-}
 
 export default function Skills() {
   const ref    = useRef(null)
@@ -136,7 +48,7 @@ export default function Skills() {
 
   return (
     <section id="skills" ref={ref} style={{
-      padding:      '120px 60px',
+      padding:      '140px 60px',
       background:   'var(--section-alt)',
       borderTop:    '1px solid var(--border)',
       borderBottom: '1px solid var(--border)',
@@ -147,15 +59,15 @@ export default function Skills() {
       {/* Watermark */}
       <div style={{
         position:      'absolute',
-        top:           '-20px',
-        left:          '40px',
+        top:           '-30px',
+        right:         '40px',
         fontFamily:    'var(--font-display)',
+        fontStyle:     'italic',
         fontSize:      'clamp(160px, 22vw, 320px)',
-        fontWeight:    800,
+        fontWeight:    700,
         color:         'var(--accent)',
-        opacity:       0.03,
+        opacity:       0.04,
         lineHeight:    1,
-        letterSpacing: '-0.04em',
         pointerEvents: 'none',
         userSelect:    'none',
       }}>
@@ -189,36 +101,92 @@ export default function Skills() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08 }}
           style={{
-            fontFamily:    'var(--font-display)',
-            fontSize:      'clamp(40px, 5vw, 68px)',
-            color:         'var(--heading)',
-            lineHeight:    0.92,
-            letterSpacing: '-0.02em',
-            marginBottom:  '64px',
+            fontFamily:   'var(--font-display)',
+            fontSize:     'clamp(42px, 5vw, 68px)',
+            fontWeight:   600,
+            color:        'var(--heading)',
+            lineHeight:   1.05,
+            marginBottom: '72px',
           }}
         >
-          TOOLS I<br /><span style={{ color: 'var(--accent)' }}>BUILD WITH</span>
+          Tools I <em>build with.</em>
         </motion.h2>
 
-        {/* Row 1: Frontend (3fr) + Backend (2fr) */}
-        <div className="resp-tab" style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '1px', marginBottom: '1px' }}>
-          <SkillCell row={skillGrid[0]} inView={inView} delay={0.15} />
-          <SkillCell row={skillGrid[1]} inView={inView} delay={0.22} />
-        </div>
+        {/* Index rows */}
+        <div style={{ borderTop: '1px solid var(--border)' }}>
+          {skillGrid.map((row, i) => (
+            <motion.div
+              key={row.id}
+              className="skill-row"
+              initial={{ opacity: 0, y: 20, filter: 'blur(5px)' }}
+              animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.65, delay: 0.15 + i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                display:             'grid',
+                gridTemplateColumns: '60px 280px 1fr',
+                alignItems:          'baseline',
+                gap:                 '32px',
+                padding:             '34px 0',
+                borderBottom:        '1px solid var(--border)',
+                transition:          'background 0.3s ease, padding-left 0.3s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'var(--card-hover)'; e.currentTarget.style.paddingLeft = '20px' }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.paddingLeft = '0px' }}
+            >
+              {/* Index */}
+              <span style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '11px',
+                color:         'var(--accent)',
+                letterSpacing: '0.1em',
+              }}>
+                {row.num}
+              </span>
 
-        {/* Row 2: Database (2fr) + Cloud (3fr) */}
-        <div className="resp-tab" style={{ display: 'grid', gridTemplateColumns: '2fr 3fr', gap: '1px', marginBottom: '1px' }}>
-          <SkillCell row={skillGrid[2]} inView={inView} delay={0.30} />
-          <SkillCell row={skillGrid[3]} inView={inView} delay={0.37} />
-        </div>
+              {/* Category */}
+              <span style={{
+                fontFamily: 'var(--font-display)',
+                fontSize:   'clamp(24px, 2.8vw, 36px)',
+                fontWeight: 600,
+                color:      'var(--heading)',
+                lineHeight: 1.1,
+              }}>
+                {row.category}
+              </span>
 
-        {/* Row 3: AI & ML (3fr) + Mobile (2fr) */}
-        <div className="resp-tab" style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '1px' }}>
-          <SkillCell row={skillGrid[4]} inView={inView} delay={0.45} />
-          <SkillCell row={skillGrid[5]} inView={inView} delay={0.52} />
+              {/* Skills — quiet inline list */}
+              <span style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '11.5px',
+                color:         'var(--subtext)',
+                letterSpacing: '0.04em',
+                lineHeight:    2.1,
+              }}>
+                {row.skills.map((skill, si) => (
+                  <span key={skill}>
+                    {skill}
+                    {si < row.skills.length - 1 && (
+                      <span style={{ color: 'var(--accent)', opacity: 0.5, padding: '0 10px' }}>·</span>
+                    )}
+                  </span>
+                ))}
+              </span>
+            </motion.div>
+          ))}
         </div>
-
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .skill-row {
+            grid-template-columns: 40px 1fr !important;
+            gap: 16px !important;
+          }
+          .skill-row > span:last-child {
+            grid-column: 2;
+          }
+        }
+      `}</style>
     </section>
   )
 }

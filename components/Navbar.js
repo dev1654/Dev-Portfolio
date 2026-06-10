@@ -77,13 +77,13 @@ export default function Navbar() {
 
         {/* Logo */}
         <a href="#" style={{
-          fontFamily:    'var(--font-display)',
-          fontSize:      '20px',
-          fontWeight:    800,
-          color:         'var(--accent)',
-          letterSpacing: '0.05em',
+          fontFamily: 'var(--font-display)',
+          fontStyle:  'italic',
+          fontSize:   '22px',
+          fontWeight: 600,
+          color:      'var(--accent)',
         }}>
-          DEV<span style={{ color: 'var(--muted)' }}>.</span>
+          Dev<span style={{ color: 'var(--muted)' }}>.</span>
         </a>
 
         {/* Nav links — desktop */}

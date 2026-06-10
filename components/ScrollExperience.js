@@ -60,11 +60,11 @@ export default function ScrollExperience() {
         pPositions[i * 3]     = r * Math.sin(phi) * Math.cos(theta)
         pPositions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
         pPositions[i * 3 + 2] = r * Math.cos(phi)
-        // lime to white gradient
+        // gold to warm-white gradient
         const t = Math.random()
-        pColors[i * 3]     = 0.67 + t * 0.33
-        pColors[i * 3 + 1] = 1.0
-        pColors[i * 3 + 2] = 0.27 + t * 0.73
+        pColors[i * 3]     = 0.83 + t * 0.17
+        pColors[i * 3 + 1] = 0.69 + t * 0.31
+        pColors[i * 3 + 2] = 0.22 + t * 0.78
       }
       const pGeo = new THREE.BufferGeometry()
       pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3))
@@ -76,7 +76,7 @@ export default function ScrollExperience() {
       // ---- CORE SPHERE ----
       const coreGeo = new THREE.IcosahedronGeometry(1.2, 1)
       const coreMat = new THREE.MeshBasicMaterial({
-        color: 0xAAFF45, wireframe: true, transparent: true, opacity: 0.35,
+        color: 0xD4AF37, wireframe: true, transparent: true, opacity: 0.35,
       })
       coreSphere = new THREE.Mesh(coreGeo, coreMat)
       scene.add(coreSphere)
@@ -91,9 +91,9 @@ export default function ScrollExperience() {
         scene.add(mesh)
         return mesh
       }
-      ring1 = makeRing(2.8, 0.012, 0xAAFF45, Math.PI / 2, 0)
-      ring2 = makeRing(3.4, 0.010, 0x88EE33, Math.PI / 3, Math.PI / 5)
-      ring3 = makeRing(4.0, 0.008, 0x66CC22, Math.PI / 6, Math.PI / 3)
+      ring1 = makeRing(2.8, 0.012, 0xD4AF37, Math.PI / 2, 0)
+      ring2 = makeRing(3.4, 0.010, 0xB8860B, Math.PI / 3, Math.PI / 5)
+      ring3 = makeRing(4.0, 0.008, 0x8B6914, Math.PI / 6, Math.PI / 3)
 
       // ---- FLOATING DOTS (inner) ----
       const iCount = 60
@@ -107,7 +107,7 @@ export default function ScrollExperience() {
       }
       const iGeo = new THREE.BufferGeometry()
       iGeo.setAttribute('position', new THREE.BufferAttribute(iPositions, 3))
-      const iMat = new THREE.PointsMaterial({ size: 0.08, color: 0xCCFF77, transparent: true, opacity: 0.9 })
+      const iMat = new THREE.PointsMaterial({ size: 0.08, color: 0xF4D87C, transparent: true, opacity: 0.9 })
       const innerDots = new THREE.Points(iGeo, iMat)
       scene.add(innerDots)
 
@@ -212,7 +212,7 @@ export default function ScrollExperience() {
         height: '100vh',
         width: '100%',
         overflow: 'hidden',
-        background: '#07070F',
+        background: '#0A0908',
         display: done ? 'none' : 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -228,7 +228,7 @@ export default function ScrollExperience() {
           position: 'absolute',
           bottom: 0, left: 0, right: 0,
           height: '200px',
-          background: 'linear-gradient(to top, #07070F, transparent)',
+          background: 'linear-gradient(to top, #0A0908, transparent)',
           pointerEvents: 'none',
           zIndex: 2,
         }} />
@@ -256,7 +256,7 @@ export default function ScrollExperience() {
           <div style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(80px, 14vw, 180px)',
-            color: '#AAFF45',
+            color: '#D4AF37',
             lineHeight: 0.85,
             letterSpacing: '0.05em',
             marginBottom: '40px',
@@ -268,7 +268,7 @@ export default function ScrollExperience() {
           <div style={{
             fontFamily: 'var(--font-mono)',
             fontSize: 'clamp(11px, 1.5vw, 14px)',
-            color: '#AAFF45',
+            color: '#D4AF37',
             letterSpacing: '0.25em',
             textTransform: 'uppercase',
             marginBottom: '48px',
@@ -291,7 +291,7 @@ export default function ScrollExperience() {
               position: 'absolute',
               left: 0, top: 0, bottom: 0,
               width: (progress * 100) + '%',
-              background: 'linear-gradient(90deg, #AAFF45, #C4FF6B)',
+              background: 'linear-gradient(90deg, #D4AF37, #F4D87C)',
               transition: 'width 0.1s linear',
             }} />
           </div>
@@ -316,7 +316,7 @@ export default function ScrollExperience() {
           left: '40px',
           fontFamily: 'var(--font-mono)',
           fontSize: '10px',
-          color: 'rgba(170,255,69,0.3)',
+          color: 'rgba(212,175,55,0.35)',
           letterSpacing: '0.1em',
           zIndex: 3,
         }}>
@@ -329,7 +329,7 @@ export default function ScrollExperience() {
           right: '40px',
           fontFamily: 'var(--font-mono)',
           fontSize: '10px',
-          color: 'rgba(170,255,69,0.3)',
+          color: 'rgba(212,175,55,0.35)',
           letterSpacing: '0.1em',
           zIndex: 3,
         }}>
@@ -380,7 +380,7 @@ export default function ScrollExperience() {
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'rgba(255,255,255,0.3)', letterSpacing: '0.15em' }}>
               SCROLL
             </span>
-            <div style={{ width: '1px', height: '40px', background: 'linear-gradient(to bottom, rgba(170,255,69,0.5), transparent)' }} />
+            <div style={{ width: '1px', height: '40px', background: 'linear-gradient(to bottom, rgba(212,175,55,0.5), transparent)' }} />
           </div>
         )}
 

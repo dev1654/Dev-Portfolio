@@ -66,20 +66,20 @@ export default function Education() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="education" ref={ref} style={{ padding: '120px 60px', position: 'relative', overflow: 'hidden' }}>
+    <section id="education" ref={ref} style={{ padding: '140px 60px', position: 'relative', overflow: 'hidden' }}>
 
       {/* Watermark */}
       <div style={{
         position:      'absolute',
-        top:           '-20px',
-        left:          '40px',
+        top:           '-30px',
+        right:         '40px',
         fontFamily:    'var(--font-display)',
+        fontStyle:     'italic',
         fontSize:      'clamp(160px, 22vw, 320px)',
-        fontWeight:    800,
+        fontWeight:    700,
         color:         'var(--accent)',
         opacity:       0.04,
         lineHeight:    1,
-        letterSpacing: '-0.04em',
         pointerEvents: 'none',
         userSelect:    'none',
       }}>
@@ -113,164 +113,140 @@ export default function Education() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08 }}
           style={{
-            fontFamily:    'var(--font-display)',
-            fontSize:      'clamp(40px, 5vw, 68px)',
-            color:         'var(--heading)',
-            lineHeight:    0.92,
-            letterSpacing: '-0.02em',
-            marginBottom:  '64px',
+            fontFamily:   'var(--font-display)',
+            fontSize:     'clamp(42px, 5vw, 68px)',
+            fontWeight:   600,
+            color:        'var(--heading)',
+            lineHeight:   1.05,
+            marginBottom: '80px',
           }}
         >
-          ACADEMIC<br /><span style={{ color: 'var(--accent)' }}>BACKGROUND</span>
+          Academic <em>background.</em>
         </motion.h2>
 
-        {/* Two cards side by side */}
-        <div className="resp-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '48px' }}>
+        {/* Entries — open editorial rows */}
+        <div style={{ borderTop: '1px solid var(--border)', marginBottom: '72px' }}>
           {education.map((edu, i) => (
             <motion.div
               key={edu.id}
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 + i * 0.12 }}
+              className="edu-row"
+              initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}
+              animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.7, delay: 0.18 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
               style={{
-                border:     '1px solid var(--border)',
-                borderTop:  `3px solid var(--accent)`,
-                padding:    '36px 36px 32px',
-                background: 'var(--card-bg)',
-                display:    'flex',
-                flexDirection: 'column',
-                gap:        '0',
-                transition: 'background 0.25s',
+                display:             'grid',
+                gridTemplateColumns: '200px 1fr',
+                gap:                 '48px',
+                padding:             '56px 0',
+                borderBottom:        '1px solid var(--border)',
               }}
-              onMouseEnter={e => e.currentTarget.style.background = 'var(--card-hover)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'var(--card-bg)'}
             >
-              {/* Card header */}
-              <div style={{ marginBottom: '24px' }}>
+              {/* Left rail */}
+              <div>
                 <div style={{
-                  display:        'flex',
-                  justifyContent: 'space-between',
-                  alignItems:     'flex-start',
-                  marginBottom:   '12px',
-                  gap:            '12px',
+                  fontFamily: 'var(--font-display)',
+                  fontStyle:  'italic',
+                  fontSize:   'clamp(34px, 3.6vw, 48px)',
+                  fontWeight: 600,
+                  color:      'var(--accent)',
+                  lineHeight: 1,
+                  marginBottom: '16px',
                 }}>
-                  <span style={{
-                    fontFamily:    'var(--font-mono)',
-                    fontSize:      '9px',
-                    color:         'var(--accent)',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    opacity:       0.7,
-                  }}>
-                    {edu.num}
-                  </span>
-                  <span style={{
-                    fontFamily:    'var(--font-mono)',
-                    fontSize:      '9px',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    padding:       '3px 9px',
-                    color:         edu.statusActive ? 'var(--bg)' : 'var(--accent)',
-                    background:    edu.statusActive ? 'var(--accent)' : 'var(--accent-dim)',
-                    border:        '1px solid var(--accent)',
-                  }}>
-                    {edu.status}
-                  </span>
-                </div>
-
-                <h3 style={{
-                  fontFamily:    'var(--font-display)',
-                  fontSize:      'clamp(20px, 2.2vw, 28px)',
-                  fontWeight:    800,
-                  color:         'var(--heading)',
-                  lineHeight:    1.05,
-                  letterSpacing: '-0.02em',
-                  marginBottom:  '8px',
-                }}>
-                  {edu.school.toUpperCase()}
-                </h3>
-
-                <div style={{
-                  fontFamily:  'var(--font-body)',
-                  fontSize:    '14px',
-                  color:       'var(--accent)',
-                  fontWeight:  600,
-                  marginBottom: '4px',
-                }}>
-                  {edu.degree}
+                  {edu.num}
                 </div>
                 <div style={{
                   fontFamily:    'var(--font-mono)',
-                  fontSize:      '11px',
+                  fontSize:      '10px',
                   color:         'var(--muted)',
-                  letterSpacing: '0.05em',
-                  marginBottom:  '4px',
+                  letterSpacing: '0.08em',
+                  lineHeight:    1.9,
                 }}>
-                  {edu.field}
-                </div>
-                <div style={{
-                  fontFamily:    'var(--font-mono)',
-                  fontSize:      '11px',
-                  color:         'var(--muted)',
-                  letterSpacing: '0.05em',
-                  display:       'flex',
-                  justifyContent:'space-between',
-                }}>
-                  <span>{edu.period}</span>
+                  {edu.period}<br />
                   {edu.gpa && <span style={{ color: 'var(--accent)' }}>{edu.gpa} GPA</span>}
                 </div>
+                <span style={{
+                  display:       'inline-block',
+                  marginTop:     '14px',
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '9px',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  padding:       '4px 10px',
+                  color:         'var(--accent)',
+                  background:    'var(--accent-dim)',
+                  border:        '1px solid var(--accent)',
+                }}>
+                  {edu.status}
+                </span>
               </div>
 
-              <div style={{ height: '1px', background: 'var(--border)', marginBottom: '20px' }} />
-
-              {/* Highlights */}
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px', flex: 1 }}>
-                {edu.highlights.map((h, idx) => (
-                  <li key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                    <span style={{ color: 'var(--accent)', fontSize: '11px', marginTop: '3px', flexShrink: 0, opacity: 0.7 }}>▹</span>
-                    <span style={{ fontSize: '13px', color: 'var(--subtext)', lineHeight: 1.65, fontWeight: 300 }}>{h}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Courses */}
+              {/* Right */}
               <div>
+                <h3 style={{
+                  fontFamily:   'var(--font-display)',
+                  fontSize:     'clamp(26px, 2.8vw, 38px)',
+                  fontWeight:   600,
+                  color:        'var(--heading)',
+                  lineHeight:   1.12,
+                  marginBottom: '8px',
+                }}>
+                  {edu.school}
+                </h3>
+                <div style={{
+                  fontFamily:   'var(--font-display)',
+                  fontStyle:    'italic',
+                  fontSize:     '18px',
+                  fontWeight:   500,
+                  color:        'var(--accent)',
+                  marginBottom: '6px',
+                }}>
+                  {edu.degree} — {edu.field}
+                </div>
+                <div style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '11px',
+                  color:         'var(--muted)',
+                  letterSpacing: '0.05em',
+                  marginBottom:  '28px',
+                }}>
+                  {edu.location}
+                </div>
+
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
+                  {edu.highlights.map((h, idx) => (
+                    <li key={idx} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                      <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-display)', fontSize: '15px', lineHeight: 1.5, flexShrink: 0 }}>—</span>
+                      <span style={{ fontSize: '14px', color: 'var(--subtext)', lineHeight: 1.7, fontWeight: 300 }}>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+
                 <div style={{
                   fontFamily:    'var(--font-mono)',
                   fontSize:      '9px',
                   color:         'var(--muted)',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
-                  marginBottom:  '10px',
+                  marginBottom:  '12px',
                 }}>
                   Coursework
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-                  {edu.courses.map((c) => (
-                    <span key={c} style={{
-                      fontFamily:    'var(--font-mono)',
-                      fontSize:      '9px',
-                      color:         'var(--subtext)',
-                      background:    'var(--tag-bg)',
-                      border:        '1px solid var(--tag-border)',
-                      padding:       '3px 8px',
-                      letterSpacing: '0.03em',
-                    }}>
+                <div style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '10.5px',
+                  color:         'var(--subtext)',
+                  letterSpacing: '0.04em',
+                  lineHeight:    2,
+                }}>
+                  {edu.courses.map((c, ci) => (
+                    <span key={c}>
                       {c}
+                      {ci < edu.courses.length - 1 && (
+                        <span style={{ color: 'var(--accent)', opacity: 0.5, padding: '0 9px' }}>·</span>
+                      )}
                     </span>
                   ))}
                 </div>
-              </div>
-
-              {/* Location */}
-              <div style={{
-                fontFamily:    'var(--font-mono)',
-                fontSize:      '10px',
-                color:         'var(--muted)',
-                marginTop:     '20px',
-                letterSpacing: '0.06em',
-              }}>
-                {edu.location}
               </div>
             </motion.div>
           ))}
@@ -309,18 +285,17 @@ export default function Education() {
                 gridTemplateColumns: '1fr auto',
                 gap:             '24px',
                 alignItems:      'center',
-                padding:         '24px 0',
-                borderTop:       '1px solid var(--border)',
+                padding:         '28px 0',
                 borderBottom:    '1px solid var(--border)',
               }}
             >
               <div>
                 <div style={{
-                  fontFamily:   'var(--font-body)',
-                  fontSize:     '16px',
+                  fontFamily:   'var(--font-display)',
+                  fontSize:     '20px',
                   fontWeight:   600,
                   color:        'var(--heading)',
-                  marginBottom: '6px',
+                  marginBottom: '8px',
                 }}>
                   {cert.name}
                 </div>
@@ -333,36 +308,47 @@ export default function Education() {
                 }}>
                   {cert.issuer} · Issued {cert.date} · ID: {cert.id}
                 </div>
-                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                  {cert.skills.map((s) => (
-                    <span key={s} style={{
-                      fontFamily:    'var(--font-mono)',
-                      fontSize:      '10px',
-                      color:         'var(--accent)',
-                      background:    'var(--accent-dim)',
-                      border:        '1px solid var(--tag-border)',
-                      padding:       '3px 9px',
-                    }}>
+                <div style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '10.5px',
+                  color:         'var(--subtext)',
+                  letterSpacing: '0.04em',
+                }}>
+                  {cert.skills.map((s, si) => (
+                    <span key={s}>
                       {s}
+                      {si < cert.skills.length - 1 && (
+                        <span style={{ color: 'var(--accent)', opacity: 0.5, padding: '0 9px' }}>·</span>
+                      )}
                     </span>
                   ))}
                 </div>
               </div>
               <div style={{
-                fontFamily:    'var(--font-display)',
-                fontSize:      '28px',
-                color:         'var(--accent)',
-                opacity:       0.2,
-                letterSpacing: '0.05em',
-                fontWeight:    800,
+                fontFamily: 'var(--font-display)',
+                fontStyle:  'italic',
+                fontSize:   '30px',
+                color:      'var(--accent)',
+                opacity:    0.25,
+                fontWeight: 600,
               }}>
-                {cert.issuer.toUpperCase()}
+                {cert.issuer}
               </div>
             </div>
           ))}
         </motion.div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .edu-row {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+            padding: 40px 0 !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

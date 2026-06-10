@@ -22,7 +22,7 @@ const projects = [
     live:         null,
     year:         '2026',
     association:  'Humber Polytechnic',
-    color:        '#EC4899',
+    color:        '#E8B4B8',
     tag:          'Full Stack',
     collab:       false,
     collaborators: [],
@@ -45,7 +45,7 @@ const projects = [
     live:         'https://brain-tumor-classifier-ten.vercel.app',
     year:         '2026',
     association:  'Humber Polytechnic',
-    color:        '#8B5CF6',
+    color:        '#A78BFA',
     tag:          'AI / ML',
     collab:       false,
     collaborators: [],
@@ -68,7 +68,7 @@ const projects = [
     live:         null,
     year:         '2025 – 2026',
     association:  'Personal Project',
-    color:        '#F59E0B',
+    color:        '#D4AF37',
     tag:          'Full Stack',
     collab:       false,
     collaborators: [],
@@ -91,7 +91,7 @@ const projects = [
     live:         null,
     year:         '2024 – 2025',
     association:  'Personal Project',
-    color:        '#61DAFB',
+    color:        '#CD7F32',
     tag:          'Full Stack',
     collab:       false,
     collaborators: [],
@@ -114,7 +114,7 @@ const projects = [
     live:         'https://chargeit-r4bp.onrender.com',
     year:         '2025',
     association:  'Collaboration',
-    color:        '#34D399',
+    color:        '#F4D87C',
     tag:          'Full Stack',
     collab:       true,
     collaborators: ['dev1654', 'DeepPatel29', 'FawzaanJuhoor'],
@@ -137,7 +137,7 @@ const projects = [
     live:         null,
     year:         '2026',
     association:  'Humber Polytechnic',
-    color:        '#A78BFA',
+    color:        '#C9A0DC',
     tag:          'Android',
     collab:       false,
     collaborators: [],
@@ -166,19 +166,19 @@ export default function Projects() {
       {/* Watermark */}
       <div style={{
         position:      'absolute',
-        top:           '-20px',
-        left:          '40px',
+        top:           '-30px',
+        right:         '40px',
         fontFamily:    'var(--font-display)',
+        fontStyle:     'italic',
         fontSize:      'clamp(160px, 22vw, 320px)',
-        fontWeight:    800,
+        fontWeight:    700,
         color:         'var(--accent)',
         opacity:       0.03,
         lineHeight:    1,
-        letterSpacing: '-0.04em',
         pointerEvents: 'none',
         userSelect:    'none',
       }}>
-        06
+        04
       </div>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -216,14 +216,14 @@ export default function Projects() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.08 }}
             style={{
-              fontFamily:    'var(--font-display)',
-              fontSize:      'clamp(40px, 5vw, 68px)',
-              color:         'var(--heading)',
-              lineHeight:    0.92,
-              letterSpacing: '-0.02em',
+              fontFamily: 'var(--font-display)',
+              fontSize:   'clamp(42px, 5vw, 68px)',
+              fontWeight: 600,
+              color:      'var(--heading)',
+              lineHeight: 1.05,
             }}
           >
-            THINGS I<br /><span style={{ color: 'var(--accent)' }}>HAVE BUILT</span>
+            Things I <em>have built.</em>
           </motion.h2>
 
           <motion.div
@@ -269,55 +269,53 @@ export default function Projects() {
               >
                 {/* Row header */}
                 <div
+                  className="proj-row"
                   onClick={() => setOpen(isOpen ? null : project.id)}
                   style={{
                     display:        'flex',
                     alignItems:     'center',
                     justifyContent: 'space-between',
-                    padding:        '24px 20px 24px 0',
+                    padding:        '32px 20px 32px 0',
                     borderBottom:   isOpen ? 'none' : '1px solid var(--border)',
                     cursor:         'pointer',
                     gap:            '16px',
                     userSelect:     'none',
-                    background:     isOpen ? 'transparent' : 'transparent',
-                    transition:     'all 0.2s',
+                    transition:     'all 0.25s ease',
                   }}
-                  onMouseEnter={e => { if (!isOpen) e.currentTarget.style.paddingLeft = '12px' }}
+                  onMouseEnter={e => { if (!isOpen) e.currentTarget.style.paddingLeft = '16px' }}
                   onMouseLeave={e => { if (!isOpen) e.currentTarget.style.paddingLeft = '0' }}
                 >
-                  {/* Left: big number + title + subtitle */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flex: 1, minWidth: 0 }}>
+                  {/* Left: index + title + subtitle */}
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '28px', flex: 1, minWidth: 0 }}>
                     <span style={{
-                      fontFamily:    'var(--font-display)',
-                      fontSize:      'clamp(32px, 5vw, 72px)',
-                      fontWeight:    800,
-                      color:         project.color,
-                      opacity:       isOpen ? 0.6 : 0.18,
-                      lineHeight:    1,
-                      letterSpacing: '-0.03em',
-                      transition:    'opacity 0.3s',
+                      fontFamily:    'var(--font-mono)',
+                      fontSize:      '11px',
+                      color:         'var(--accent)',
+                      letterSpacing: '0.1em',
                       flexShrink:    0,
                     }}>
                       {project.num}
                     </span>
                     <div style={{ minWidth: 0 }}>
                       <div className="proj-title" style={{
-                        fontFamily:    'var(--font-display)',
-                        fontSize:      'clamp(22px, 3vw, 42px)',
-                        fontWeight:    800,
-                        lineHeight:    1,
-                        letterSpacing: '-0.02em',
-                        color:         isOpen ? project.color : 'var(--heading)',
-                        transition:    'color 0.3s',
-                        whiteSpace:    'nowrap',
+                        fontFamily: 'var(--font-display)',
+                        fontSize:   'clamp(26px, 3.6vw, 52px)',
+                        fontWeight: 600,
+                        lineHeight: 1.05,
+                        fontStyle:  isOpen ? 'italic' : 'normal',
+                        color:      isOpen ? 'var(--accent)' : 'var(--heading)',
+                        transition: 'color 0.3s',
+                        whiteSpace: 'nowrap',
                       }}>
                         {project.title}
                       </div>
                       <div className="proj-subtitle" style={{
-                        fontFamily:   'var(--font-body)',
-                        fontSize:     '13px',
+                        fontFamily:   'var(--font-display)',
+                        fontStyle:    'italic',
+                        fontSize:     '15px',
+                        fontWeight:   500,
                         color:        'var(--muted)',
-                        marginTop:    '4px',
+                        marginTop:    '6px',
                         overflow:     'hidden',
                         textOverflow: 'ellipsis',
                         whiteSpace:   'nowrap',
@@ -570,6 +568,13 @@ export default function Projects() {
         </motion.div>
 
       </div>
+
+      <style>{`
+        .proj-row:hover .proj-title {
+          font-style: italic;
+          color: var(--accent) !important;
+        }
+      `}</style>
     </section>
   )
 }

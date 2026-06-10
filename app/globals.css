@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -7,61 +7,69 @@
 }
 
 /* ============================================
-   DARK THEME (default)
+   DARK THEME — noir & gold (default)
    ============================================ */
 :root,
 [data-theme="dark"] {
-  --bg:          #080C0B;
-  --bg-2:        #0C1210;
-  --bg-3:        #111A18;
-  --border:      rgba(16, 185, 129, 0.13);
-  --nav-bg:      rgba(8, 12, 11, 0.92);
-  --accent:      #10B981;
-  --accent-dim:  rgba(16, 185, 129, 0.10);
-  --heading:     #ECFDF5;
-  --text:        #A3BFBA;
-  --subtext:     #678F88;
-  --muted:       #3A5E56;
-  --card-bg:     rgba(16, 185, 129, 0.04);
-  --card-hover:  rgba(16, 185, 129, 0.08);
-  --section-alt: rgba(16, 185, 129, 0.025);
-  --tag-bg:      rgba(16, 185, 129, 0.07);
-  --tag-border:  rgba(16, 185, 129, 0.20);
-  --input-bg:    rgba(16, 185, 129, 0.05);
-  --scrollbar:   #10B981;
-  --cursor-ring: rgba(16, 185, 129, 0.5);
+  --bg:          #0A0908;
+  --bg-2:        #12100C;
+  --bg-3:        #1A1710;
+  --border:      rgba(212, 175, 55, 0.14);
+  --nav-bg:      rgba(10, 9, 8, 0.92);
+  --accent:      #D4AF37;
+  --accent-dim:  rgba(212, 175, 55, 0.10);
+  --heading:     #F4EFE3;
+  --text:        #BEB49C;
+  --subtext:     #948A6F;
+  --muted:       #635B45;
+  --card-bg:     rgba(212, 175, 55, 0.04);
+  --card-hover:  rgba(212, 175, 55, 0.08);
+  --section-alt: rgba(212, 175, 55, 0.025);
+  --tag-bg:      rgba(212, 175, 55, 0.07);
+  --tag-border:  rgba(212, 175, 55, 0.22);
+  --input-bg:    rgba(212, 175, 55, 0.05);
+  --scrollbar:   #D4AF37;
+  --cursor-ring: rgba(212, 175, 55, 0.5);
+  --glow-1:      rgba(212, 175, 55, 0.06);
+  --glow-2:      rgba(184, 115, 51, 0.04);
+  --accent-hot:  #F4D87C;
+  --grain:       0.04;
 }
 
 /* ============================================
-   LIGHT THEME
+   LIGHT THEME — ivory & gold
    ============================================ */
 [data-theme="light"] {
-  --bg:          #F0FDF9;
-  --bg-2:        #D1FAE5;
-  --bg-3:        #A7F3D0;
-  --border:      rgba(5, 150, 105, 0.13);
-  --nav-bg:      rgba(240, 253, 249, 0.93);
-  --accent:      #059669;
-  --accent-dim:  rgba(5, 150, 105, 0.10);
-  --heading:     #022C22;
-  --text:        #1A3A2E;
-  --subtext:     #2D5244;
-  --muted:       #5A8070;
-  --card-bg:     rgba(5, 150, 105, 0.04);
-  --card-hover:  rgba(5, 150, 105, 0.08);
-  --section-alt: rgba(5, 150, 105, 0.025);
-  --tag-bg:      rgba(5, 150, 105, 0.05);
-  --tag-border:  rgba(5, 150, 105, 0.16);
-  --input-bg:    rgba(5, 150, 105, 0.05);
-  --scrollbar:   #059669;
-  --cursor-ring: rgba(5, 150, 105, 0.5);
+  --bg:          #F2EBDC;
+  --bg-2:        #EAE0C9;
+  --bg-3:        #DFD1B2;
+  --border:      rgba(138, 106, 15, 0.20);
+  --nav-bg:      rgba(242, 235, 220, 0.93);
+  --accent:      #8F6E0D;
+  --accent-dim:  rgba(143, 110, 13, 0.10);
+  --heading:     #1C160C;
+  --text:        #423926;
+  --subtext:     #60543B;
+  --muted:       #8B7C5C;
+  --card-bg:     rgba(143, 110, 13, 0.045);
+  --card-hover:  rgba(143, 110, 13, 0.09);
+  --section-alt: rgba(143, 110, 13, 0.035);
+  --tag-bg:      rgba(143, 110, 13, 0.06);
+  --tag-border:  rgba(143, 110, 13, 0.20);
+  --input-bg:    rgba(143, 110, 13, 0.05);
+  --scrollbar:   #8F6E0D;
+  --cursor-ring: rgba(143, 110, 13, 0.5);
+  --glow-1:      rgba(190, 152, 40, 0.12);
+  --glow-2:      rgba(166, 124, 20, 0.07);
+  --accent-hot:  #BE9828;
+  --grain:       0.035;
 }
 
 /* ============================================
    FONT VARIABLES (theme-independent)
    ============================================ */
 :root {
-  --font-display: 'Syne', sans-serif;
+  --font-display: 'Playfair Display', serif;
   --font-body:    'Outfit', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
   --max-width:    1200px;
@@ -88,10 +96,28 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--heading);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* Italic gold accent inside serif headings */
+h1 em, h2 em, h3 em, .gold-italic {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* Editorial drop cap for lead paragraphs */
+.dropcap::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.6em;
+  font-weight: 700;
+  float: left;
+  line-height: 0.78;
+  padding: 4px 12px 0 0;
+  color: var(--accent);
 }
 
 p { color: var(--subtext); }
@@ -99,6 +125,92 @@ a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
 ::selection { background: var(--accent); color: #fff; }
+
+/* ============================================
+   AMBIENT GLOW — slow-drifting warm light
+   behind all content
+   ============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 45% 35% at 18% 22%, var(--glow-1), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 82% 75%, var(--glow-2), transparent 70%);
+  animation: emberDrift 26s ease-in-out infinite alternate;
+}
+
+@keyframes emberDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(3%, -2%) scale(1.06); }
+  100% { transform: translate(-2%, 3%) scale(1); }
+}
+
+/* ============================================
+   FILM GRAIN — subtle texture over everything
+   ============================================ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  pointer-events: none;
+  opacity: var(--grain);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ============================================
+   GOLD SHIMMER — animated gradient text
+   ============================================ */
+.gold-text {
+  background: linear-gradient(110deg,
+    var(--accent) 25%,
+    var(--accent-hot) 42%,
+    var(--accent) 58%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: goldShimmer 6s linear infinite;
+}
+
+@keyframes goldShimmer {
+  to { background-position: -250% center; }
+}
+
+/* ============================================
+   OUTLINE TEXT — hollow display type
+   ============================================ */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--accent);
+}
+
+@media (max-width: 768px) {
+  .outline-text { -webkit-text-stroke-width: 1.2px; }
+}
+
+/* ============================================
+   MARQUEE — infinite scrolling band
+   ============================================ */
+@keyframes marqueeX {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }

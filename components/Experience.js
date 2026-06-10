@@ -67,20 +67,20 @@ export default function Experience() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="experience" ref={ref} style={{ padding: '120px 60px', position: 'relative', overflow: 'hidden' }}>
+    <section id="experience" ref={ref} style={{ padding: '140px 60px', position: 'relative', overflow: 'hidden' }}>
 
       {/* Watermark */}
       <div style={{
         position:      'absolute',
-        top:           '-20px',
-        left:          '40px',
+        top:           '-30px',
+        right:         '40px',
         fontFamily:    'var(--font-display)',
+        fontStyle:     'italic',
         fontSize:      'clamp(160px, 22vw, 320px)',
-        fontWeight:    800,
+        fontWeight:    700,
         color:         'var(--accent)',
         opacity:       0.04,
         lineHeight:    1,
-        letterSpacing: '-0.04em',
         pointerEvents: 'none',
         userSelect:    'none',
       }}>
@@ -114,176 +114,122 @@ export default function Experience() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08 }}
           style={{
-            fontFamily:    'var(--font-display)',
-            fontSize:      'clamp(40px, 5vw, 68px)',
-            color:         'var(--heading)',
-            lineHeight:    0.92,
-            letterSpacing: '-0.02em',
-            marginBottom:  '72px',
+            fontFamily:   'var(--font-display)',
+            fontSize:     'clamp(42px, 5vw, 68px)',
+            fontWeight:   600,
+            color:        'var(--heading)',
+            lineHeight:   1.05,
+            marginBottom: '80px',
           }}
         >
-          WHERE I HAVE<br /><span style={{ color: 'var(--accent)' }}>WORKED</span>
+          Where I have <em>worked.</em>
         </motion.h2>
 
-        {/* Timeline */}
-        <div className="exp-timeline" style={{ position: 'relative', paddingLeft: '100px' }}>
-          <style>{`
-            @media (max-width: 768px) {
-              .exp-timeline { padding-left: 48px !important; }
-            }
-          `}</style>
-
-          {/* Vertical line */}
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={inView ? { scaleY: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
-            style={{
-              position:      'absolute',
-              left:          '52px',
-              top:           '8px',
-              bottom:        '8px',
-              width:         '1px',
-              background:    'var(--border)',
-              transformOrigin: 'top',
-            }}
-          />
-
+        {/* Entries — open editorial, no boxes */}
+        <div style={{ borderTop: '1px solid var(--border)' }}>
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.id}
-              initial={{ opacity: 0, x: -24 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
+              className="exp-row"
+              initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}
+              animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+              transition={{ duration: 0.7, delay: 0.2 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
               style={{
-                position:     'relative',
-                marginBottom: i < experiences.length - 1 ? '64px' : 0,
+                display:             'grid',
+                gridTemplateColumns: '200px 1fr',
+                gap:                 '48px',
+                padding:             '56px 0',
+                borderBottom:        '1px solid var(--border)',
               }}
             >
-              {/* Year label */}
-              <div style={{
-                position:      'absolute',
-                left:          '-100px',
-                top:           '0px',
-                fontFamily:    'var(--font-mono)',
-                fontSize:      '11px',
-                color:         'var(--accent)',
-                letterSpacing: '0.1em',
-                fontWeight:    500,
-                width:         '40px',
-                textAlign:     'right',
-              }}>
-                {exp.year}
+              {/* ── Left rail — giant italic year ── */}
+              <div>
+                <div style={{
+                  fontFamily: 'var(--font-display)',
+                  fontStyle:  'italic',
+                  fontSize:   'clamp(40px, 4.4vw, 60px)',
+                  fontWeight: 600,
+                  color:      'var(--accent)',
+                  lineHeight: 1,
+                  marginBottom: '16px',
+                }}>
+                  {exp.year}
+                </div>
+                <div style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '10px',
+                  color:         'var(--muted)',
+                  letterSpacing: '0.08em',
+                  lineHeight:    1.9,
+                }}>
+                  {exp.period}<br />
+                  <span style={{ color: 'var(--accent)' }}>{exp.duration}</span>
+                </div>
+                {exp.tag && (
+                  <span style={{
+                    display:       'inline-block',
+                    marginTop:     '14px',
+                    fontFamily:    'var(--font-mono)',
+                    fontSize:      '9px',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    padding:       '4px 10px',
+                    color:         exp.tagActive ? 'var(--bg)' : 'var(--accent)',
+                    background:    exp.tagActive ? 'var(--accent)' : 'var(--accent-dim)',
+                    border:        '1px solid var(--accent)',
+                  }}>
+                    {exp.tag}
+                  </span>
+                )}
               </div>
 
-              {/* Timeline dot */}
-              <div style={{
-                position:     'absolute',
-                left:         '-52px',
-                top:          '6px',
-                width:        '10px',
-                height:       '10px',
-                borderRadius: '50%',
-                background:   exp.tagActive ? 'var(--accent)' : 'var(--bg)',
-                border:       '2px solid var(--accent)',
-                transform:    'translateX(-50%)',
-              }} />
-
-              {/* Content */}
-              <div style={{
-                background:  'var(--card-bg)',
-                border:      '1px solid var(--border)',
-                borderLeft:  '3px solid var(--accent)',
-                padding:     '32px 36px',
-                transition:  'background 0.25s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = 'var(--card-hover)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'var(--card-bg)'}
-              >
-                {/* Header */}
-                <div style={{
-                  display:        'flex',
-                  justifyContent: 'space-between',
-                  alignItems:     'flex-start',
-                  marginBottom:   '20px',
-                  flexWrap:       'wrap',
-                  gap:            '12px',
+              {/* ── Right — role, company, bullets ── */}
+              <div>
+                <h3 style={{
+                  fontFamily:   'var(--font-display)',
+                  fontSize:     'clamp(24px, 2.6vw, 34px)',
+                  fontWeight:   600,
+                  color:        'var(--heading)',
+                  lineHeight:   1.15,
+                  marginBottom: '8px',
                 }}>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '6px', flexWrap: 'wrap' }}>
-                      <h3 style={{
-                        fontFamily:    'var(--font-body)',
-                        fontSize:      '20px',
-                        fontWeight:    700,
-                        color:         'var(--heading)',
-                        letterSpacing: '0',
-                      }}>
-                        {exp.role}
-                      </h3>
-                      {exp.tag && (
-                        <span style={{
-                          fontFamily:    'var(--font-mono)',
-                          fontSize:      '9px',
-                          letterSpacing: '0.1em',
-                          textTransform: 'uppercase',
-                          padding:       '3px 9px',
-                          color:         exp.tagActive ? 'var(--bg)' : 'var(--accent)',
-                          background:    exp.tagActive ? 'var(--accent)' : 'var(--accent-dim)',
-                          border:        '1px solid var(--accent)',
-                        }}>
-                          {exp.tag}
-                        </span>
-                      )}
-                    </div>
-                    <div style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize:   '15px',
-                      color:      'var(--accent)',
-                      fontWeight: 600,
-                      marginBottom: '4px',
-                    }}>
-                      {exp.company}
-                    </div>
-                    <div style={{
-                      fontFamily:    'var(--font-mono)',
-                      fontSize:      '11px',
-                      color:         'var(--muted)',
-                      letterSpacing: '0.05em',
-                    }}>
-                      {exp.type} · {exp.location}
-                    </div>
-                  </div>
-                  <div style={{
-                    fontFamily:  'var(--font-mono)',
-                    fontSize:    '11px',
-                    color:       'var(--muted)',
-                    textAlign:   'right',
-                    flexShrink:  0,
-                  }}>
-                    <div>{exp.period}</div>
-                    <div style={{ color: 'var(--accent)', marginTop: '3px' }}>{exp.duration}</div>
-                  </div>
+                  {exp.role}
+                </h3>
+                <div style={{
+                  fontFamily:   'var(--font-body)',
+                  fontSize:     '16px',
+                  color:        'var(--accent)',
+                  fontWeight:   600,
+                  marginBottom: '6px',
+                }}>
+                  {exp.company}
+                </div>
+                <div style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '11px',
+                  color:         'var(--muted)',
+                  letterSpacing: '0.05em',
+                  marginBottom:  '28px',
+                }}>
+                  {exp.type} · {exp.location}
                 </div>
 
-                <div style={{ height: '1px', background: 'var(--border)', marginBottom: '20px' }} />
-
-                {/* Bullets */}
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: exp.tech.length ? '24px' : 0 }}>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: exp.tech.length ? '28px' : 0 }}>
                   {exp.bullets.map((bullet, bi) => (
-                    <li key={bi} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <li key={bi} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                       <span style={{
                         color:      'var(--accent)',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize:   '13px',
-                        marginTop:  '2px',
+                        fontFamily: 'var(--font-display)',
+                        fontSize:   '15px',
+                        lineHeight: 1.5,
                         flexShrink: 0,
                       }}>
-                        ▹
+                        —
                       </span>
                       <span style={{
                         fontSize:   '15px',
                         color:      'var(--subtext)',
-                        lineHeight: 1.7,
+                        lineHeight: 1.75,
                         fontWeight: 300,
                       }}>
                         {bullet}
@@ -292,20 +238,20 @@ export default function Experience() {
                   ))}
                 </ul>
 
-                {/* Tech tags */}
                 {exp.tech.length > 0 && (
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                    {exp.tech.map((t) => (
-                      <span key={t} style={{
-                        fontFamily:    'var(--font-mono)',
-                        fontSize:      '10px',
-                        color:         'var(--accent)',
-                        background:    'var(--accent-dim)',
-                        border:        '1px solid var(--tag-border)',
-                        padding:       '4px 10px',
-                        letterSpacing: '0.04em',
-                      }}>
+                  <div style={{
+                    fontFamily:    'var(--font-mono)',
+                    fontSize:      '11px',
+                    color:         'var(--muted)',
+                    letterSpacing: '0.04em',
+                    lineHeight:    2,
+                  }}>
+                    {exp.tech.map((t, ti) => (
+                      <span key={t}>
                         {t}
+                        {ti < exp.tech.length - 1 && (
+                          <span style={{ color: 'var(--accent)', opacity: 0.5, padding: '0 10px' }}>·</span>
+                        )}
                       </span>
                     ))}
                   </div>
@@ -316,7 +262,16 @@ export default function Experience() {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .exp-row {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+            padding: 40px 0 !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }
-

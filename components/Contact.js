@@ -33,16 +33,18 @@ export default function Contact() {
   }
 
   const inputStyle = (name) => ({
-    width:       '100%',
-    background:  focused === name ? 'var(--accent-dim)' : 'var(--input-bg)',
-    border:      `1px solid ${focused === name ? 'var(--accent)' : 'var(--border)'}`,
-    padding:     '14px 18px',
-    fontFamily:  'var(--font-body)',
-    fontSize:    '15px',
-    color:       'var(--text)',
-    outline:     'none',
-    transition:  'all 0.25s',
-    display:     'block',
+    width:        '100%',
+    background:   'transparent',
+    border:       'none',
+    borderBottom: `1px solid ${focused === name ? 'var(--accent)' : 'var(--border)'}`,
+    padding:      '12px 2px',
+    fontFamily:   'var(--font-body)',
+    fontSize:     '16px',
+    color:        'var(--text)',
+    outline:      'none',
+    transition:   'border-color 0.3s',
+    display:      'block',
+    borderRadius: 0,
   })
 
   const labelStyle = {
@@ -67,15 +69,15 @@ export default function Contact() {
       {/* Watermark */}
       <div style={{
         position:      'absolute',
-        top:           '-20px',
-        left:          '40px',
+        top:           '-30px',
+        right:         '40px',
         fontFamily:    'var(--font-display)',
+        fontStyle:     'italic',
         fontSize:      'clamp(160px, 22vw, 320px)',
-        fontWeight:    800,
+        fontWeight:    700,
         color:         'var(--accent)',
         opacity:       0.03,
         lineHeight:    1,
-        letterSpacing: '-0.04em',
         pointerEvents: 'none',
         userSelect:    'none',
       }}>
@@ -109,15 +111,15 @@ export default function Contact() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.08 }}
           style={{
-            fontFamily:    'var(--font-display)',
-            fontSize:      'clamp(40px, 5vw, 68px)',
-            color:         'var(--heading)',
-            lineHeight:    0.92,
-            letterSpacing: '-0.02em',
-            marginBottom:  '16px',
+            fontFamily:   'var(--font-display)',
+            fontSize:     'clamp(42px, 5vw, 68px)',
+            fontWeight:   600,
+            color:        'var(--heading)',
+            lineHeight:   1.05,
+            marginBottom: '16px',
           }}
         >
-          LET&apos;S WORK<br /><span style={{ color: 'var(--accent)' }}>TOGETHER</span>
+          Let&apos;s work <em>together.</em>
         </motion.h2>
 
         <motion.p
@@ -136,6 +138,31 @@ export default function Contact() {
           Open to full-time opportunities, internships, and freelance projects.
           Drop me a message and I&apos;ll get back to you within 24 hours.
         </motion.p>
+
+        {/* Giant email — the centerpiece */}
+        <motion.a
+          href="mailto:pateldev878@gmail.com"
+          initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+          animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            display:      'inline-block',
+            fontFamily:   'var(--font-display)',
+            fontStyle:    'italic',
+            fontWeight:   500,
+            fontSize:     'clamp(22px, 3.6vw, 48px)',
+            color:        'var(--accent)',
+            lineHeight:   1.2,
+            marginBottom: '72px',
+            borderBottom: '1px solid transparent',
+            transition:   'border-color 0.3s',
+            wordBreak:    'break-word',
+          }}
+          onMouseEnter={e => e.currentTarget.style.borderBottomColor = 'var(--accent)'}
+          onMouseLeave={e => e.currentTarget.style.borderBottomColor = 'transparent'}
+        >
+          pateldev878@gmail.com&nbsp;↗
+        </motion.a>
 
         {/* Main layout: left info + right form */}
         <div className="resp-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '72px', alignItems: 'start' }}>
@@ -265,10 +292,11 @@ export default function Contact() {
                 <h3 style={{
                   fontFamily:   'var(--font-display)',
                   fontSize:     '32px',
+                  fontWeight:   600,
                   color:        'var(--heading)',
                   marginBottom: '12px',
                 }}>
-                  MESSAGE SENT
+                  Message <em>sent.</em>
                 </h3>
                 <p style={{
                   fontFamily: 'var(--font-body)',
