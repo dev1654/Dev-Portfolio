@@ -236,12 +236,14 @@ export default function Contact() {
                       target={link.href.startsWith('http') ? '_blank' : undefined}
                       rel="noopener noreferrer"
                       style={{
-                        fontFamily:  'var(--font-body)',
-                        fontSize:    '14px',
-                        color:       'var(--subtext)',
-                        flex:        1,
-                        textAlign:   'right',
-                        transition:  'color 0.2s',
+                        fontFamily:   'var(--font-body)',
+                        fontSize:     '14px',
+                        color:        'var(--subtext)',
+                        flex:         1,
+                        textAlign:    'right',
+                        transition:   'color 0.2s',
+                        minWidth:     0,
+                        overflowWrap: 'anywhere',
                       }}
                       onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
                       onMouseLeave={e => e.currentTarget.style.color = 'var(--subtext)'}

@@ -164,9 +164,9 @@ export default function Skills() {
               }}>
                 {row.skills.map((skill, si) => (
                   <span key={skill}>
-                    {skill}
+                    <span style={{ whiteSpace: 'nowrap' }}>{skill}</span>
                     {si < row.skills.length - 1 && (
-                      <span style={{ color: 'var(--accent)', opacity: 0.5, padding: '0 10px' }}>·</span>
+                      <span style={{ color: 'var(--accent)', opacity: 0.5 }}>{' · '}</span>
                     )}
                   </span>
                 ))}

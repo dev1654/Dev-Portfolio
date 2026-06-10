@@ -94,14 +94,14 @@ export default function About() {
             {/* Stats — open serif numerals, no boxes */}
             <motion.div {...reveal(0.26)} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
               {stats.map((s) => (
-                <div key={s.num} style={{ display: 'flex', alignItems: 'baseline', gap: '20px', borderBottom: '1px solid var(--border)', paddingBottom: '20px' }}>
+                <div key={s.num} style={{ display: 'flex', alignItems: 'baseline', gap: '20px', flexWrap: 'wrap', borderBottom: '1px solid var(--border)', paddingBottom: '20px' }}>
                   <div style={{
                     fontFamily:    'var(--font-display)',
                     fontSize:      'clamp(38px, 4vw, 56px)',
                     fontWeight:    700,
                     color:         'var(--accent)',
                     lineHeight:    1,
-                    minWidth:      '120px',
+                    minWidth:      '96px',
                   }}>
                     {s.num}
                   </div>

@@ -240,9 +240,9 @@ export default function Education() {
                 }}>
                   {edu.courses.map((c, ci) => (
                     <span key={c}>
-                      {c}
+                      <span style={{ whiteSpace: 'nowrap' }}>{c}</span>
                       {ci < edu.courses.length - 1 && (
-                        <span style={{ color: 'var(--accent)', opacity: 0.5, padding: '0 9px' }}>·</span>
+                        <span style={{ color: 'var(--accent)', opacity: 0.5 }}>{' · '}</span>
                       )}
                     </span>
                   ))}
@@ -280,6 +280,7 @@ export default function Education() {
           {certifications.map((cert) => (
             <div
               key={cert.name}
+              className="cert-row"
               style={{
                 display:         'grid',
                 gridTemplateColumns: '1fr auto',
@@ -305,6 +306,7 @@ export default function Education() {
                   color:         'var(--muted)',
                   marginBottom:  '12px',
                   letterSpacing: '0.04em',
+                  overflowWrap:  'anywhere',
                 }}>
                   {cert.issuer} · Issued {cert.date} · ID: {cert.id}
                 </div>
@@ -316,15 +318,15 @@ export default function Education() {
                 }}>
                   {cert.skills.map((s, si) => (
                     <span key={s}>
-                      {s}
+                      <span style={{ whiteSpace: 'nowrap' }}>{s}</span>
                       {si < cert.skills.length - 1 && (
-                        <span style={{ color: 'var(--accent)', opacity: 0.5, padding: '0 9px' }}>·</span>
+                        <span style={{ color: 'var(--accent)', opacity: 0.5 }}>{' · '}</span>
                       )}
                     </span>
                   ))}
                 </div>
               </div>
-              <div style={{
+              <div className="cert-issuer-mark" style={{
                 fontFamily: 'var(--font-display)',
                 fontStyle:  'italic',
                 fontSize:   '30px',

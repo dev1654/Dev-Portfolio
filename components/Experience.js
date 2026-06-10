@@ -248,9 +248,9 @@ export default function Experience() {
                   }}>
                     {exp.tech.map((t, ti) => (
                       <span key={t}>
-                        {t}
+                        <span style={{ whiteSpace: 'nowrap' }}>{t}</span>
                         {ti < exp.tech.length - 1 && (
-                          <span style={{ color: 'var(--accent)', opacity: 0.5, padding: '0 10px' }}>·</span>
+                          <span style={{ color: 'var(--accent)', opacity: 0.5 }}>{' · '}</span>
                         )}
                       </span>
                     ))}

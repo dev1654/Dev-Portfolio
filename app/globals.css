@@ -232,6 +232,12 @@ body::after {
   .resp-tab { grid-template-columns: 1fr !important; gap: 1px !important; }
 }
 
+/* Grid/flex blowout protection — children of responsive
+   grids may not shrink below content width without this */
+.resp-2col > *, .skill-row > *, .exp-row > *, .edu-row > *, .cert-row > * {
+  min-width: 0;
+}
+
 /* ── Mobile (768px) ── */
 @media (max-width: 768px) {
   * { cursor: auto !important; }
@@ -254,12 +260,17 @@ body::after {
   footer { padding-left: 24px !important; padding-right: 24px !important; }
 
   h1 { font-size: clamp(52px, 14vw, 120px) !important; letter-spacing: -0.02em !important; }
-  h2 { font-size: clamp(36px, 8vw, 72px) !important; }
+  h2 { font-size: clamp(34px, 7.5vw, 64px) !important; }
+  h1, h2, h3 { overflow-wrap: break-word; }
 
   /* class-based grid collapse — reliable on all React inline styles */
   .resp-2col      { grid-template-columns: 1fr !important; gap: 32px !important; }
   .resp-form-row  { grid-template-columns: 1fr !important; gap: 12px !important; }
   .resp-tab       { grid-template-columns: 1fr !important; gap: 1px !important; }
+
+  /* certifications — single column, hide decorative issuer mark */
+  .cert-row         { grid-template-columns: 1fr !important; }
+  .cert-issuer-mark { display: none !important; }
 
   /* project row — hide tag & year, allow title to wrap */
   .proj-tag      { display: none !important; }
