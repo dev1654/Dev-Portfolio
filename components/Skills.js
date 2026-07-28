@@ -5,39 +5,27 @@ import { motion, useInView } from 'framer-motion'
 
 const skillGrid = [
   {
-    id: 0,
-    num: '01',
-    category: 'Frontend',
+    id: 0, num: '01', category: 'Frontend', xp: 90, level: 'Lv.9',
     skills: ['React.js', 'Next.js', 'React Native', 'TypeScript', 'JavaScript', 'Vite', 'Tailwind CSS', 'Redux Toolkit', 'TanStack Query', 'Electron.js'],
   },
   {
-    id: 1,
-    num: '02',
-    category: 'Backend',
+    id: 1, num: '02', category: 'Backend', xp: 82, level: 'Lv.8',
     skills: ['Node.js', 'Express.js', 'Fastify', 'FastAPI', 'Spring Boot', 'REST APIs', 'Socket.io', 'JWT'],
   },
   {
-    id: 2,
-    num: '03',
-    category: 'Database',
+    id: 2, num: '03', category: 'Database', xp: 76, level: 'Lv.7',
     skills: ['PostgreSQL', 'MongoDB', 'Supabase', 'Firebase', 'Prisma ORM', 'Redis', 'Room DB', 'Hibernate'],
   },
   {
-    id: 3,
-    num: '04',
-    category: 'Cloud & DevOps',
+    id: 3, num: '04', category: 'Cloud & DevOps', xp: 68, level: 'Lv.6',
     skills: ['AWS (EC2, S3, Lambda)', 'Docker', 'GitHub Actions', 'CI/CD', 'Vercel', 'Render', 'Git / GitHub', 'Maven'],
   },
   {
-    id: 4,
-    num: '05',
-    category: 'AI & ML',
+    id: 4, num: '05', category: 'AI & ML', xp: 72, level: 'Lv.7',
     skills: ['PyTorch', 'EfficientNet-B0', 'ResNet18', 'Grad-CAM', 'HuggingFace', 'Claude API', 'Transfer Learning'],
   },
   {
-    id: 5,
-    num: '06',
-    category: 'Mobile',
+    id: 5, num: '06', category: 'Mobile', xp: 65, level: 'Lv.6',
     skills: ['Kotlin', 'Room DB', 'Firebase Auth', 'Google Maps SDK', 'Retrofit', 'Material Design 3'],
   },
 ]
@@ -93,6 +81,7 @@ export default function Skills() {
             02 / Skills
           </span>
           <div style={{ width: '80px', height: '1px', background: 'var(--accent)', opacity: 0.3 }} />
+          <span className="unlock-indicator">Area Unlocked</span>
         </motion.div>
 
         {/* Heading */}
@@ -143,16 +132,49 @@ export default function Skills() {
                 {row.num}
               </span>
 
-              {/* Category */}
-              <span style={{
-                fontFamily: 'var(--font-display)',
-                fontSize:   'clamp(24px, 2.8vw, 36px)',
-                fontWeight: 600,
-                color:      'var(--heading)',
-                lineHeight: 1.1,
-              }}>
-                {row.category}
-              </span>
+              {/* Category + XP bar */}
+              <div>
+                <span style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize:   'clamp(24px, 2.8vw, 36px)',
+                  fontWeight: 600,
+                  color:      'var(--heading)',
+                  lineHeight: 1.1,
+                  display:    'block',
+                }}>
+                  {row.category}
+                </span>
+                <div style={{ marginTop: '10px' }}>
+                  <div style={{
+                    width:        '120px',
+                    height:       '3px',
+                    background:   'var(--border)',
+                    borderRadius: '2px',
+                    overflow:     'hidden',
+                  }}>
+                    <motion.div
+                      initial={{ width: '0%' }}
+                      animate={inView ? { width: row.xp + '%' } : { width: '0%' }}
+                      transition={{ duration: 1.3, delay: 0.3 + i * 0.09, ease: [0.22, 1, 0.36, 1] }}
+                      style={{
+                        height:     '100%',
+                        background: 'var(--accent)',
+                        borderRadius: '2px',
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    fontFamily:    'var(--font-mono)',
+                    fontSize:      '9px',
+                    color:         'var(--accent)',
+                    letterSpacing: '0.12em',
+                    marginTop:     '6px',
+                    opacity:       0.8,
+                  }}>
+                    {row.level} · {row.xp} XP
+                  </div>
+                </div>
+              </div>
 
               {/* Skills — quiet inline list */}
               <span style={{

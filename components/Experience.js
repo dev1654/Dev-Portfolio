@@ -6,6 +6,45 @@ import { motion, useInView } from 'framer-motion'
 const experiences = [
   {
     id:       0,
+    year:     '2025',
+    role:     'Walmart Canada',
+    company:  'Walmart Canada',
+    type:     'Permanent Part-time',
+    period:   'Aug 2025 — Present',
+    duration: '1 yr+',
+    location: 'Toronto, ON · On-site',
+    tag:      'Current',
+    tagActive: true,
+    isTree:   true,
+    treeRoles: [
+      {
+        role:    'Customer Service Manager',
+        period:  'Jul 2026 — Present',
+        current: true,
+        bullets: [
+          'Promoted to Customer Service Manager, overseeing all front-end operations including Service Desk, Self-Checkout, and Registers.',
+          'Lead and coordinate customer service associates to ensure efficient, high-quality service across all front-end touchpoints.',
+          'Resolve escalated customer issues and complaints, maintaining satisfaction standards under high-volume retail conditions.',
+          'Manage daily staffing allocation, monitor performance metrics, and communicate operational updates to store leadership.',
+        ],
+      },
+      {
+        role:    'Customer Service Desk & Cashier',
+        period:  'Aug 2025 — Jun 2026',
+        current: false,
+        bullets: [
+          'Operated across front-end roles including Service Desk, Self-Checkout, and Registers simultaneously.',
+          'Handled returns, exchanges, and complex customer inquiries — resolving issues calmly under high volume.',
+          'Monitored multiple self-service SCO stations and troubleshot routine technical alerts and hardware jams.',
+          'Processed high-volume transactions efficiently using internal systems — POS, Handhelds, Inventory Lookup.',
+        ],
+      },
+    ],
+    bullets: [],
+    tech: [],
+  },
+  {
+    id:       1,
     year:     '2026',
     role:     'Team Lead / Full Stack Developer',
     company:  'Giftelle | HrxConnect Capstone',
@@ -21,25 +60,6 @@ const experiences = [
       'Coordinated Supabase auth migration, Stripe payment integration, and cross-platform testing for production deployment.',
     ],
     tech: ['React', 'Vite', 'React Native', 'Expo', 'Supabase', 'Stripe', 'TypeScript'],
-  },
-  {
-    id:       1,
-    year:     '2025',
-    role:     'Customer Service Desk & Cashier',
-    company:  'Walmart Canada',
-    type:     'Permanent Part-time',
-    period:   'Aug 2025 — Present',
-    duration: '9 months',
-    location: 'Toronto, ON · On-site',
-    tag:      'Current',
-    tagActive: true,
-    bullets: [
-      'Operate across front-end roles including Service Desk, Self-Checkout, and Registers simultaneously.',
-      'Handle returns, exchanges, and complex customer inquiries — resolving issues calmly under high volume.',
-      'Monitor multiple self-service SCO stations and troubleshoot routine technical alerts and hardware jams.',
-      'Process high-volume transactions efficiently using internal systems — POS, Handhelds, Inventory Lookup.',
-    ],
-    tech: [],
   },
   {
     id:       2,
@@ -106,6 +126,7 @@ export default function Experience() {
             03 / Experience
           </span>
           <div style={{ width: '80px', height: '1px', background: 'var(--accent)', opacity: 0.3 }} />
+          <span className="unlock-indicator">Area Unlocked</span>
         </motion.div>
 
         {/* Heading */}
@@ -193,7 +214,7 @@ export default function Experience() {
                   lineHeight:   1.15,
                   marginBottom: '8px',
                 }}>
-                  {exp.role}
+                  {exp.isTree ? exp.company : exp.role}
                 </h3>
                 <div style={{
                   fontFamily:   'var(--font-body)',
@@ -202,41 +223,105 @@ export default function Experience() {
                   fontWeight:   600,
                   marginBottom: '6px',
                 }}>
-                  {exp.company}
+                  {exp.isTree ? exp.type + ' · ' + exp.location : exp.company}
                 </div>
-                <div style={{
-                  fontFamily:    'var(--font-mono)',
-                  fontSize:      '11px',
-                  color:         'var(--muted)',
-                  letterSpacing: '0.05em',
-                  marginBottom:  '28px',
-                }}>
-                  {exp.type} · {exp.location}
-                </div>
+                {!exp.isTree && (
+                  <div style={{
+                    fontFamily:    'var(--font-mono)',
+                    fontSize:      '11px',
+                    color:         'var(--muted)',
+                    letterSpacing: '0.05em',
+                    marginBottom:  '28px',
+                  }}>
+                    {exp.type} · {exp.location}
+                  </div>
+                )}
 
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: exp.tech.length ? '28px' : 0 }}>
-                  {exp.bullets.map((bullet, bi) => (
-                    <li key={bi} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                      <span style={{
-                        color:      'var(--accent)',
-                        fontFamily: 'var(--font-display)',
-                        fontSize:   '15px',
-                        lineHeight: 1.5,
-                        flexShrink: 0,
-                      }}>
-                        —
-                      </span>
-                      <span style={{
-                        fontSize:   '15px',
-                        color:      'var(--subtext)',
-                        lineHeight: 1.75,
-                        fontWeight: 300,
-                      }}>
-                        {bullet}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Tree of roles for multi-role entries */}
+                {exp.isTree ? (
+                  <div style={{ marginTop: '24px', borderLeft: '2px solid var(--border)', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '0' }}>
+                    {exp.treeRoles.map((tr, ti) => (
+                      <div key={ti} style={{ position: 'relative', paddingBottom: ti < exp.treeRoles.length - 1 ? '32px' : '0' }}>
+                        {/* Timeline dot */}
+                        <div style={{
+                          position:     'absolute',
+                          left:         '-27px',
+                          top:          '6px',
+                          width:        '10px',
+                          height:       '10px',
+                          borderRadius: '50%',
+                          background:   tr.current ? 'var(--accent)' : 'var(--bg)',
+                          border:       '2px solid var(--accent)',
+                          animation:    tr.current ? 'aboutPulse 2.5s infinite' : 'none',
+                        }} />
+                        <div style={{
+                          fontFamily:   'var(--font-display)',
+                          fontSize:     'clamp(16px, 1.8vw, 22px)',
+                          fontWeight:   600,
+                          color:        tr.current ? 'var(--heading)' : 'var(--subtext)',
+                          lineHeight:   1.2,
+                          marginBottom: '4px',
+                        }}>
+                          {tr.role}
+                          {tr.current && (
+                            <span style={{
+                              marginLeft:    '10px',
+                              fontFamily:    'var(--font-mono)',
+                              fontSize:      '8px',
+                              color:         'var(--bg)',
+                              background:    'var(--accent)',
+                              padding:       '2px 7px',
+                              letterSpacing: '0.12em',
+                              textTransform: 'uppercase',
+                              verticalAlign: 'middle',
+                            }}>Current</span>
+                          )}
+                        </div>
+                        <div style={{
+                          fontFamily:    'var(--font-mono)',
+                          fontSize:      '10px',
+                          color:         'var(--muted)',
+                          letterSpacing: '0.06em',
+                          marginBottom:  '14px',
+                        }}>
+                          {tr.period}
+                        </div>
+                        <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                          {tr.bullets.map((b, bi) => (
+                            <li key={bi} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                              <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-display)', fontSize: '14px', lineHeight: 1.6, flexShrink: 0 }}>—</span>
+                              <span style={{ fontSize: '14px', color: 'var(--subtext)', lineHeight: 1.75, fontWeight: 300 }}>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: exp.tech.length ? '28px' : 0 }}>
+                    {exp.bullets.map((bullet, bi) => (
+                      <li key={bi} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                        <span style={{
+                          color:      'var(--accent)',
+                          fontFamily: 'var(--font-display)',
+                          fontSize:   '15px',
+                          lineHeight: 1.5,
+                          flexShrink: 0,
+                        }}>
+                          —
+                        </span>
+                        <span style={{
+                          fontSize:   '15px',
+                          color:      'var(--subtext)',
+                          lineHeight: 1.75,
+                          fontWeight: 300,
+                        }}>
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
                 {exp.tech.length > 0 && (
                   <div style={{

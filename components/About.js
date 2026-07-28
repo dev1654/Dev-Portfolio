@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import CountUp from '@/components/CountUp'
 
 const interests = [
   'Full Stack Development', 'AI & Machine Learning', 'Cloud Computing',
@@ -9,15 +10,23 @@ const interests = [
 ]
 
 const stats = [
-  { num: '3+',   label: 'Years Coding' },
-  { num: '6mo',  label: 'Internship @ Stackss' },
-  { num: '8.12', label: 'CGPA — Silver Oak' },
+  { to: 3,    suffix: '+',  decimals: 0, label: 'Years Coding' },
+  { to: 6,    suffix: 'mo', decimals: 0, label: 'Internship @ Stackss' },
+  { to: 8.12, suffix: '',   decimals: 2, label: 'CGPA — Silver Oak' },
 ]
 
 const currently = [
   { active: false, text: 'Graduate — IT Solutions, Humber Polytechnic (Apr 2026)' },
-  { active: true,  text: 'Part-time @ Walmart Canada — Customer Service & Cashier' },
+  { active: true,  text: 'Customer Service Manager @ Walmart Canada — Promoted Jul 2026' },
   { active: true,  text: 'Open to Full Stack & Backend Developer roles — Available immediately' },
+]
+
+const charStats = [
+  { abbr: 'STR', label: 'Backend & APIs',   pct: 82 },
+  { abbr: 'INT', label: 'Problem Solving',  pct: 90 },
+  { abbr: 'DEX', label: 'Frontend & UI',    pct: 85 },
+  { abbr: 'WIS', label: 'System Design',    pct: 74 },
+  { abbr: 'CHA', label: 'Team Leadership',  pct: 78 },
 ]
 
 export default function About() {
@@ -70,6 +79,7 @@ export default function About() {
             01 / About
           </span>
           <div style={{ width: '80px', height: '1px', background: 'var(--accent)', opacity: 0.3 }} />
+          <span className="unlock-indicator">Area Unlocked</span>
         </motion.div>
 
         {/* Asymmetric editorial split */}
@@ -93,8 +103,8 @@ export default function About() {
 
             {/* Stats — open serif numerals, no boxes */}
             <motion.div {...reveal(0.26)} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-              {stats.map((s) => (
-                <div key={s.num} style={{ display: 'flex', alignItems: 'baseline', gap: '20px', flexWrap: 'wrap', borderBottom: '1px solid var(--border)', paddingBottom: '20px' }}>
+              {stats.map((s, si) => (
+                <div key={s.label} style={{ display: 'flex', alignItems: 'baseline', gap: '20px', flexWrap: 'wrap', borderBottom: '1px solid var(--border)', paddingBottom: '20px' }}>
                   <div style={{
                     fontFamily:    'var(--font-display)',
                     fontSize:      'clamp(38px, 4vw, 56px)',
@@ -103,7 +113,7 @@ export default function About() {
                     lineHeight:    1,
                     minWidth:      '96px',
                   }}>
-                    {s.num}
+                    <CountUp to={s.to} suffix={s.suffix} decimals={s.decimals} inView={inView} delay={si * 180} />
                   </div>
                   <div style={{
                     fontFamily:    'var(--font-mono)',
@@ -113,6 +123,78 @@ export default function About() {
                     textTransform: 'uppercase',
                   }}>
                     {s.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Character sheet */}
+            <motion.div {...reveal(0.34)} style={{
+              marginTop:  '44px',
+              border:     '1px solid var(--border)',
+              padding:    '20px 22px 18px',
+              position:   'relative',
+            }}>
+              <div style={{
+                position:      'absolute',
+                top:           '-9px',
+                left:          '14px',
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '8px',
+                color:         'var(--accent)',
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                background:    'var(--bg)',
+                padding:       '0 7px',
+              }}>
+                Character Sheet
+              </div>
+
+              <div style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '10px',
+                letterSpacing: '0.08em',
+                marginBottom:  '18px',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
+                  <span style={{ color: 'var(--muted)', textTransform: 'uppercase' }}>Class</span>
+                  <span style={{ color: 'var(--subtext)' }}>Full Stack Dev</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--muted)', textTransform: 'uppercase' }}>Level</span>
+                  <span style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize:   '18px',
+                    fontWeight: 700,
+                    color:      'var(--accent)',
+                    lineHeight: 1,
+                  }}>3+</span>
+                </div>
+              </div>
+
+              <div style={{ height: '1px', background: 'var(--border)', marginBottom: '16px' }} />
+
+              {charStats.map((stat, si) => (
+                <div key={stat.abbr} style={{ marginBottom: '12px' }}>
+                  <div style={{
+                    display:        'flex',
+                    justifyContent: 'space-between',
+                    fontFamily:     'var(--font-mono)',
+                    fontSize:       '9px',
+                    letterSpacing:  '0.1em',
+                    marginBottom:   '5px',
+                  }}>
+                    <span style={{ color: 'var(--accent)' }}>{stat.abbr}</span>
+                    <span style={{ color: 'var(--muted)' }}>{stat.label}</span>
+                    <span style={{ color: 'var(--subtext)' }}>{stat.pct}</span>
+                  </div>
+                  <div style={{ height: '3px', background: 'var(--border)', borderRadius: '2px', overflow: 'hidden' }}>
+                    <motion.div
+                      initial={{ width: '0%' }}
+                      animate={inView ? { width: stat.pct + '%' } : {}}
+                      transition={{ duration: 1.1, delay: 0.5 + si * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ height: '100%', background: 'var(--accent)', borderRadius: '2px' }}
+                    />
                   </div>
                 </div>
               ))}

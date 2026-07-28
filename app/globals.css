@@ -79,7 +79,13 @@
    BASE STYLES
    ============================================ */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior:  smooth;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 64px;
+}
+
+section {
+  scroll-snap-align: start;
 }
 
 body {
@@ -215,6 +221,50 @@ body::after {
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 2px; }
+
+/* ============================================
+   LOGO EASTER EGG TOAST
+   ============================================ */
+@keyframes eggSlideIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-14px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0);     }
+}
+
+/* ============================================
+   CLICK BURST
+   ============================================ */
+@keyframes cursorBurst {
+  0%   { transform: translate(-50%, -50%) translate(0, 0)                     scale(1);   opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(var(--btx), var(--bty))   scale(0);   opacity: 0; }
+}
+
+/* ============================================
+   SECTION UNLOCK BADGE
+   ============================================ */
+.unlock-indicator {
+  font-family:    var(--font-mono);
+  font-size:      8px;
+  color:          var(--accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border:         1px solid var(--accent);
+  padding:        3px 9px;
+  opacity:        0;
+  pointer-events: none;
+  white-space:    nowrap;
+  flex-shrink:    0;
+}
+
+section.in-view .unlock-indicator {
+  animation: unlockBadge 3.2s ease 0.65s forwards;
+}
+
+@keyframes unlockBadge {
+  0%   { opacity: 0; transform: translateX(10px); }
+  14%  { opacity: 1; transform: translateX(0); }
+  68%  { opacity: 1; }
+  100% { opacity: 0; }
+}
 
 /* Hide default cursor globally */
 * { cursor: none !important; }

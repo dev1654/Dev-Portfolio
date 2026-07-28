@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import Magnetic from '@/components/Magnetic'
 
 const links = [
   { label: 'About',      href: '#about' },
@@ -14,13 +15,31 @@ export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [activeSection, setActive]  = useState('')
   const [scrollPct, setScrollPct]   = useState(0)
-  const [theme, setTheme]           = useState('dark')
+  const [theme, setTheme]           = useState('light')
   const [mounted, setMounted]       = useState(false)
   const [menuOpen, setMenuOpen]     = useState(false)
+  const [logoEgg, setLogoEgg]       = useState(false)
+  const logoTaps  = useRef(0)
+  const logoTimer = useRef(null)
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    clearTimeout(logoTimer.current)
+    logoTaps.current += 1
+    if (logoTaps.current >= 5) {
+      logoTaps.current = 0
+      setLogoEgg(true)
+      setTimeout(() => setLogoEgg(false), 4500)
+    } else {
+      logoTimer.current = setTimeout(() => { logoTaps.current = 0 }, 2200)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   useEffect(() => {
     setMounted(true)
-    const saved = localStorage.getItem('dp-theme') || 'dark'
+    localStorage.removeItem('dp-theme')
+    const saved = localStorage.getItem('dp-theme-v2') || 'light'
     setTheme(saved)
     document.documentElement.setAttribute('data-theme', saved)
   }, [])
@@ -46,7 +65,7 @@ export default function Navbar() {
     const next = theme === 'dark' ? 'light' : 'dark'
     setTheme(next)
     document.documentElement.setAttribute('data-theme', next)
-    localStorage.setItem('dp-theme', next)
+    localStorage.setItem('dp-theme-v2', next)
   }
 
   return (
@@ -75,8 +94,36 @@ export default function Navbar() {
         transition:         'all 0.3s ease',
       }}>
 
+        {/* Logo easter egg toast */}
+        {logoEgg && (
+          <div style={{
+            position:       'fixed',
+            top:            '80px',
+            left:           '50%',
+            transform:      'translateX(-50%)',
+            zIndex:         9998,
+            background:     'var(--bg)',
+            border:         '1px solid var(--accent)',
+            padding:        '18px 32px',
+            textAlign:      'center',
+            minWidth:       '280px',
+            animation:      'eggSlideIn 0.4s ease',
+            pointerEvents:  'none',
+          }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '8px', color: 'var(--accent)', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: '8px' }}>
+              Secret Unlocked
+            </div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 700, color: 'var(--heading)', marginBottom: '6px' }}>
+              You found me.
+            </div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.08em' }}>
+              +50 Curiosity XP — Achievement Unlocked
+            </div>
+          </div>
+        )}
+
         {/* Logo */}
-        <a href="#" style={{
+        <a onClick={handleLogoClick} href="#" style={{
           fontFamily: 'var(--font-display)',
           fontStyle:  'italic',
           fontSize:   '22px',
@@ -143,24 +190,27 @@ export default function Navbar() {
             </button>
           )}
 
-          <a
-            href="#contact"
-            style={{
-              fontFamily:     'var(--font-mono)',
-              fontSize:       '11px',
-              letterSpacing:  '0.12em',
-              textTransform:  'uppercase',
-              color:          'var(--bg)',
-              background:     'var(--accent)',
-              padding:        '9px 20px',
-              textDecoration: 'none',
-              transition:     'opacity 0.2s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
-            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-          >
-            Let&apos;s Talk
-          </a>
+          <Magnetic strength={0.28} threshold={70}>
+            <a
+              href="#contact"
+              style={{
+                fontFamily:     'var(--font-mono)',
+                fontSize:       '11px',
+                letterSpacing:  '0.12em',
+                textTransform:  'uppercase',
+                color:          'var(--bg)',
+                background:     'var(--accent)',
+                padding:        '9px 20px',
+                textDecoration: 'none',
+                transition:     'opacity 0.2s',
+                display:        'block',
+              }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >
+              Let&apos;s Talk
+            </a>
+          </Magnetic>
         </div>
 
         {/* Hamburger — mobile only */}

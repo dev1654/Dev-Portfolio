@@ -24,6 +24,7 @@ const projects = [
     association:  'Humber Polytechnic',
     color:        '#E8B4B8',
     tag:          'Full Stack',
+    achievement:  'CAPSTONE ELITE — Full Scope Delivered',
     collab:       false,
     collaborators: [],
   },
@@ -47,6 +48,7 @@ const projects = [
     association:  'Humber Polytechnic',
     color:        '#A78BFA',
     tag:          'AI / ML',
+    achievement:  'PRECISION SHOT — 98.31% Accuracy',
     collab:       false,
     collaborators: [],
   },
@@ -70,6 +72,7 @@ const projects = [
     association:  'Personal Project',
     color:        '#D4AF37',
     tag:          'Full Stack',
+    achievement:  'FULL STACK ARCHITECT — 8-Module System',
     collab:       false,
     collaborators: [],
   },
@@ -93,6 +96,7 @@ const projects = [
     association:  'Personal Project',
     color:        '#CD7F32',
     tag:          'Full Stack',
+    achievement:  'MARKET READY — Dual Auth + Real-Time Messaging',
     collab:       false,
     collaborators: [],
   },
@@ -116,6 +120,7 @@ const projects = [
     association:  'Collaboration',
     color:        '#F4D87C',
     tag:          'Full Stack',
+    achievement:  'TEAM SYNERGY — 3-Person Collaboration',
     collab:       true,
     collaborators: ['dev1654', 'DeepPatel29', 'FawzaanJuhoor'],
   },
@@ -139,6 +144,7 @@ const projects = [
     association:  'Humber Polytechnic',
     color:        '#C9A0DC',
     tag:          'Android',
+    achievement:  'EXPLORER — Badge Reward System Built',
     collab:       false,
     collaborators: [],
   },
@@ -200,6 +206,7 @@ export default function Projects() {
             04 / Projects
           </span>
           <div style={{ width: '80px', height: '1px', background: 'var(--accent)', opacity: 0.3 }} />
+          <span className="unlock-indicator">Area Unlocked</span>
         </motion.div>
 
         {/* Heading + filters */}
@@ -484,6 +491,46 @@ export default function Projects() {
 
                         {/* Right */}
                         <div>
+                          {/* Achievement badge */}
+                          <motion.div
+                            initial={{ opacity: 0, x: 16 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.25, duration: 0.5 }}
+                            style={{
+                              display:      'flex',
+                              alignItems:   'center',
+                              gap:          '10px',
+                              padding:      '10px 14px',
+                              background:   project.color + '12',
+                              border:       `1px solid ${project.color}30`,
+                              marginBottom: '22px',
+                            }}
+                          >
+                            <span style={{ fontSize: '14px', lineHeight: 1 }}>🏆</span>
+                            <div>
+                              <div style={{
+                                fontFamily:    'var(--font-mono)',
+                                fontSize:      '8px',
+                                color:         project.color,
+                                letterSpacing: '0.22em',
+                                textTransform: 'uppercase',
+                                marginBottom:  '3px',
+                                opacity:       0.9,
+                              }}>
+                                Achievement Unlocked
+                              </div>
+                              <div style={{
+                                fontFamily:    'var(--font-mono)',
+                                fontSize:      '11px',
+                                color:         'var(--heading)',
+                                letterSpacing: '0.06em',
+                                fontWeight:    500,
+                              }}>
+                                {project.achievement}
+                              </div>
+                            </div>
+                          </motion.div>
+
                           <div style={{
                             fontFamily:    'var(--font-mono)',
                             fontSize:      '9px',

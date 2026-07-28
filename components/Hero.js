@@ -1,7 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { useEffect, useState, useRef } from 'react'
+import { motion, useMotionValue, useSpring, useInView } from 'framer-motion'
+import CountUp  from '@/components/CountUp'
+import Magnetic from '@/components/Magnetic'
 
 const roles = [
   'Full Stack Developer',
@@ -11,11 +13,19 @@ const roles = [
 ]
 
 const stats = [
-  { number: '3+',   label: 'Years Coding' },
-  { number: '6mo',  label: 'Internship @ Stackss' },
-  { number: '8.12', label: 'CGPA — Silver Oak' },
-  { number: '30+',  label: 'Skills & Technologies' },
+  { to: 3,    suffix: '+',  decimals: 0, label: 'Years Coding' },
+  { to: 6,    suffix: 'mo', decimals: 0, label: 'Internship @ Stackss' },
+  { to: 8.12, suffix: '',   decimals: 2, label: 'CGPA — Silver Oak' },
+  { to: 30,   suffix: '+',  decimals: 0, label: 'Skills & Technologies' },
 ]
+
+function getGreeting() {
+  const h = new Date().getHours()
+  if (h >= 5  && h < 12) return 'Good morning — Available in Toronto'
+  if (h >= 12 && h < 17) return 'Good afternoon — Available in Toronto'
+  if (h >= 17 && h < 21) return 'Good evening — Available in Toronto'
+  return 'Working late in Toronto 🌙'
+}
 
 const marqueeItems = [
   'Full Stack', 'AI / ML', 'Android', 'Cloud', 'MERN', 'Spring Boot', 'PyTorch',
@@ -45,6 +55,10 @@ export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayed, setDisplayed] = useState('')
   const [typing, setTyping]       = useState(true)
+  const [greeting, setGreeting]   = useState(null)
+  const [confetti, setConfetti]   = useState([])
+  const statsRef  = useRef(null)
+  const statsInView = useInView(statsRef, { once: true })
 
   /* Mouse parallax for the dot grid */
   const mx = useMotionValue(0)
@@ -55,6 +69,30 @@ export default function Hero() {
   const onMouseMove = (e) => {
     mx.set((e.clientX / window.innerWidth  - 0.5) * 30)
     my.set((e.clientY / window.innerHeight - 0.5) * 30)
+  }
+
+  useEffect(() => { setGreeting(getGreeting()) }, [])
+
+  const fireConfetti = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const cx = rect.left + rect.width / 2
+    const cy = rect.top + rect.height / 2
+    const pieces = Array.from({ length: 30 }, (_, i) => {
+      const angle = Math.random() * Math.PI + Math.PI
+      const speed = 55 + Math.random() * 100
+      return {
+        id:       i,
+        tx:       Math.cos(angle) * speed,
+        ty:       Math.sin(angle) * speed,
+        rot:      Math.random() * 720 - 360,
+        size:     3 + Math.random() * 5,
+        square:   Math.random() > 0.5,
+        delay:    Math.random() * 0.12,
+        cx, cy,
+      }
+    })
+    setConfetti(pieces)
+    setTimeout(() => setConfetti([]), 1600)
   }
 
   useEffect(() => {
@@ -146,7 +184,7 @@ export default function Hero() {
             color:         'var(--accent)',
             letterSpacing: '0.12em',
           }}>
-            Available — Toronto, Canada
+            {greeting || 'Available — Toronto, Canada'}
           </span>
         </motion.div>
 
@@ -215,50 +253,75 @@ export default function Hero() {
           transition={{ delay: 1.7, duration: 0.7 }}
           style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}
         >
-          <a
-            href="#projects"
-            style={{
-              fontFamily:    'var(--font-body)',
-              fontSize:      '13px',
-              fontWeight:    700,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color:         'var(--bg)',
-              background:    'var(--accent)',
-              padding:       '16px 38px',
-              display:       'inline-block',
-              transition:    'background 0.25s, transform 0.25s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'var(--accent-hot)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'var(--accent)';     e.currentTarget.style.transform = 'translateY(0)' }}
-          >
-            View My Work →
-          </a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            style={{
-              fontFamily:    'var(--font-body)',
-              fontSize:      '13px',
-              fontWeight:    700,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color:         'var(--heading)',
-              border:        '1px solid var(--tag-border)',
-              padding:       '15px 38px',
-              display:       'inline-block',
-              transition:    'border-color 0.25s, color 0.25s, transform 0.25s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--tag-border)'; e.currentTarget.style.color = 'var(--heading)'; e.currentTarget.style.transform = 'translateY(0)' }}
-          >
-            Resume ↓
-          </a>
+          <Magnetic>
+            <a
+              href="#projects"
+              style={{
+                fontFamily:    'var(--font-body)',
+                fontSize:      '13px',
+                fontWeight:    700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color:         'var(--bg)',
+                background:    'var(--accent)',
+                padding:       '16px 38px',
+                display:       'inline-block',
+                transition:    'background 0.25s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'var(--accent-hot)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'var(--accent)'}
+            >
+              View My Work →
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              onClick={fireConfetti}
+              style={{
+                fontFamily:    'var(--font-body)',
+                fontSize:      '13px',
+                fontWeight:    700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color:         'var(--heading)',
+                border:        '1px solid var(--tag-border)',
+                padding:       '15px 38px',
+                display:       'inline-block',
+                transition:    'border-color 0.25s, color 0.25s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--tag-border)'; e.currentTarget.style.color = 'var(--heading)' }}
+            >
+              Resume ↓
+            </a>
+          </Magnetic>
         </motion.div>
       </div>
 
+      {/* ── Confetti ── */}
+      {confetti.map(p => (
+        <div key={p.id} style={{
+          position:      'fixed',
+          left:          p.cx,
+          top:           p.cy,
+          width:         p.size + 'px',
+          height:        p.size + 'px',
+          borderRadius:  p.square ? '1px' : '50%',
+          background:    'var(--accent)',
+          pointerEvents: 'none',
+          zIndex:        9996,
+          animation:     `confettiFly 1.4s ${p.delay}s ease-out forwards`,
+          '--tx':        p.tx + 'px',
+          '--ty':        p.ty + 'px',
+          '--rot':       p.rot + 'deg',
+        }} />
+      ))}
+
       {/* ── Stats strip ── */}
       <motion.div
+        ref={statsRef}
         className="hero-stats"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -291,7 +354,7 @@ export default function Hero() {
               marginBottom:  '6px',
               letterSpacing: '-0.02em',
             }}>
-              {stat.number}
+              <CountUp to={stat.to} suffix={stat.suffix} decimals={stat.decimals} inView={statsInView} delay={i * 160} />
             </div>
             <div style={{
               fontFamily:    'var(--font-mono)',
@@ -344,6 +407,10 @@ export default function Hero() {
       <style>{`
         @keyframes heroBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         @keyframes heroPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.75); } }
+        @keyframes confettiFly {
+          0%   { transform: translate(-50%,-50%) translate(0,0)                         rotate(0deg)       scale(1);   opacity: 1; }
+          100% { transform: translate(-50%,-50%) translate(var(--tx),var(--ty))         rotate(var(--rot)) scale(0.2); opacity: 0; }
+        }
         @media (max-width: 768px) {
           .hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
           .hero-stats > div { border-bottom: 1px solid var(--border); }

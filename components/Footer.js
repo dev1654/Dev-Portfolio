@@ -1,5 +1,24 @@
 'use client'
 
+import { useState, useEffect } from 'react'
+
+const WAVE = [
+  { spd: '0.55s', delay: '0s'    },
+  { spd: '0.42s', delay: '0.1s'  },
+  { spd: '0.68s', delay: '0.22s' },
+  { spd: '0.50s', delay: '0.05s' },
+  { spd: '0.62s', delay: '0.15s' },
+  { spd: '0.38s', delay: '0.28s' },
+  { spd: '0.72s', delay: '0.08s' },
+  { spd: '0.48s', delay: '0.18s' },
+  { spd: '0.58s', delay: '0.32s' },
+  { spd: '0.44s', delay: '0.12s' },
+  { spd: '0.66s', delay: '0.24s' },
+  { spd: '0.52s', delay: '0.04s' },
+]
+
+const TOTAL = 260 // 4:20
+
 const navLinks = [
   { label: 'About',      href: '#about' },
   { label: 'Skills',     href: '#skills' },
@@ -15,7 +34,18 @@ const socialLinks = [
   { label: 'Email',    href: 'mailto:pateldev878@gmail.com' },
 ]
 
+function fmt(s) {
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+}
+
 export default function Footer() {
+  const [seconds, setSeconds] = useState(154)
+
+  useEffect(() => {
+    const id = setInterval(() => setSeconds(prev => (prev + 1) % TOTAL), 1000)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <footer style={{
       borderTop:  '1px solid var(--border)',
@@ -187,6 +217,89 @@ export default function Footer() {
             Resume ↓
           </a>
         </div>
+      </div>
+
+      {/* Now Playing */}
+      <div style={{
+        maxWidth:     '1200px',
+        margin:       '0 auto',
+        borderTop:    '1px solid var(--border)',
+        padding:      '28px 0',
+        display:      'flex',
+        alignItems:   'center',
+        gap:          '20px',
+      }}>
+        <div style={{
+          fontFamily:    'var(--font-mono)',
+          fontSize:      '8px',
+          color:         'var(--accent)',
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          flexShrink:    0,
+          opacity:       0.7,
+        }}>
+          ♪ Now Playing
+        </div>
+
+        {/* Waveform */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2px', flexShrink: 0 }}>
+          {WAVE.map((w, i) => (
+            <div key={i} style={{
+              width:           '2.5px',
+              height:          '16px',
+              background:      'var(--accent)',
+              borderRadius:    '1px',
+              animation:       `waveBar ${w.spd} ${w.delay} ease-in-out infinite alternate`,
+              transformOrigin: 'center',
+            }} />
+          ))}
+        </div>
+
+        {/* Track info */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px', flexWrap: 'wrap' }}>
+            <span style={{
+              fontFamily:   'var(--font-body)',
+              fontSize:     '13px',
+              fontWeight:   500,
+              color:        'var(--heading)',
+              whiteSpace:   'nowrap',
+            }}>
+              Late Night Sessions
+            </span>
+            <span style={{
+              fontFamily:    'var(--font-mono)',
+              fontSize:      '10px',
+              color:         'var(--muted)',
+              letterSpacing: '0.04em',
+            }}>
+              Lo-Fi Dev Radio
+            </span>
+          </div>
+
+          {/* Progress bar */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--muted)', flexShrink: 0 }}>
+              {fmt(seconds)}
+            </span>
+            <div style={{ flex: 1, height: '2px', background: 'var(--border)', borderRadius: '1px', overflow: 'hidden' }}>
+              <div style={{
+                height:       '100%',
+                background:   'var(--accent)',
+                width:        (seconds / TOTAL * 100) + '%',
+                borderRadius: '1px',
+                transition:   'width 0.9s linear',
+              }} />
+            </div>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--muted)', flexShrink: 0 }}>
+              4:20
+            </span>
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes waveBar { from { transform: scaleY(0.12); } to { transform: scaleY(1); } }
+        `}</style>
       </div>
 
       {/* Bottom bar */}

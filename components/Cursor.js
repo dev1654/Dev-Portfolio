@@ -8,6 +8,7 @@ export default function Cursor() {
   const [clicking, setClicking] = useState(false)
   const [hovering, setHovering] = useState(false)
   const [visible, setVisible]   = useState(false)
+  const [bursts, setBursts]     = useState([])
 
   useEffect(() => {
     const isTouch  = window.matchMedia('(pointer: coarse)').matches
@@ -22,6 +23,16 @@ export default function Cursor() {
     const onMove  = (e) => { curX = e.clientX; curY = e.clientY; setPos({ x: curX, y: curY }) }
     const onDown  = () => setClicking(true)
     const onUp    = () => setClicking(false)
+    const onClick = (e) => {
+      const id = Date.now() + Math.random()
+      const particles = Array.from({ length: 10 }, (_, i) => {
+        const angle = (i / 10) * Math.PI * 2 + (Math.random() * 0.4 - 0.2)
+        const speed = 24 + Math.random() * 36
+        return { id: i, tx: Math.cos(angle) * speed, ty: Math.sin(angle) * speed, size: 2 + Math.random() * 3 }
+      })
+      setBursts(prev => [...prev, { id, x: e.clientX, y: e.clientY, particles }])
+      setTimeout(() => setBursts(prev => prev.filter(b => b.id !== id)), 620)
+    }
     const onEnter = () => setHovering(true)
     const onLeave = () => setHovering(false)
 
@@ -42,6 +53,7 @@ export default function Cursor() {
     window.addEventListener('mousemove', onMove)
     window.addEventListener('mousedown', onDown)
     window.addEventListener('mouseup',   onUp)
+    window.addEventListener('click',     onClick)
     animFrame = requestAnimationFrame(animate)
 
     const obs = new MutationObserver(attach)
@@ -52,6 +64,7 @@ export default function Cursor() {
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('mousedown', onDown)
       window.removeEventListener('mouseup',   onUp)
+      window.removeEventListener('click',     onClick)
       cancelAnimationFrame(animFrame)
       obs.disconnect()
     }
@@ -61,6 +74,26 @@ export default function Cursor() {
 
   return (
     <>
+      {/* Click bursts */}
+      {bursts.map(burst =>
+        burst.particles.map(p => (
+          <div key={burst.id + '-' + p.id} style={{
+            position:      'fixed',
+            left:          burst.x,
+            top:           burst.y,
+            width:         p.size + 'px',
+            height:        p.size + 'px',
+            borderRadius:  '50%',
+            background:    'var(--accent)',
+            pointerEvents: 'none',
+            zIndex:        9997,
+            animation:     'cursorBurst 0.55s ease-out forwards',
+            '--btx':       p.tx + 'px',
+            '--bty':       p.ty + 'px',
+          }} />
+        ))
+      )}
+
       {/* Dot */}
       <div style={{
         position:      'fixed',
