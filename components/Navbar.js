@@ -130,7 +130,7 @@ export default function Navbar() {
           fontWeight: 600,
           color:      'var(--accent)',
         }}>
-          Dev<span style={{ color: 'var(--muted)' }}>.</span>
+          Dev
         </a>
 
         {/* Nav links — desktop */}

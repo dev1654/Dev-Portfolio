@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Light ivory background (light theme, matches portfolio) -->
+  <rect width="64" height="64" fill="#F2EBDC"/>
+
+  <!-- Dark gold D — sweep=0 makes the arc bulge RIGHT (correct D shape) -->
+  <!-- Outer D: left stem down, bottom across, arc curving right back to top -->
+  <path d="M12,11 L12,53 L32,53 A20,21,0,0,0,32,11 Z" fill="#8F6E0D"/>
+
+  <!-- Inner counter: hollows out the D's interior in bg colour -->
+  <path d="M20,19 L20,45 L30,45 A10,13,0,0,0,30,19 Z" fill="#F2EBDC"/>
+
+</svg>

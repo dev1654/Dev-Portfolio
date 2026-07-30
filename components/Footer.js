@@ -118,7 +118,7 @@ export default function Footer() {
             lineHeight:   1,
             marginBottom: '12px',
           }}>
-            Dev<span style={{ color: 'var(--muted)' }}>.</span>
+            Dev
           </div>
           <p style={{
             fontFamily:  'var(--font-body)',
