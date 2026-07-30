@@ -193,12 +193,11 @@ export default function Education() {
                   {edu.school}
                 </h3>
                 <div style={{
-                  fontFamily:   'var(--font-display)',
-                  fontStyle:    'italic',
-                  fontSize:     '18px',
-                  fontWeight:   500,
-                  color:        'var(--accent)',
-                  marginBottom: '6px',
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '12px',
+                  color:         'var(--subtext)',
+                  letterSpacing: '0.04em',
+                  marginBottom:  '6px',
                 }}>
                   {edu.degree} — {edu.field}
                 </div>

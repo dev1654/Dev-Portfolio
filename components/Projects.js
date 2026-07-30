@@ -9,7 +9,7 @@ const projects = [
     num:         '01',
     title:       'ExamLock',
     subtitle:    'Secure Online Examination Platform',
-    description: 'Cross-platform monorepo with React web, Fastify REST API, Electron lockdown desktop shell, and React Native mobile app — shared PostgreSQL + Prisma backend. Claude API grading assistant generates per-question hints for professors.',
+    description: 'A secure exam system that locks down student devices during tests, lets them write and run code in 60+ languages inside a sandboxed editor, and gives professors AI-generated feedback and hints on each student\'s individual answers.',
     highlights: [
       'Monaco Editor for in-exam coding across 18+ languages; Judge0 CE execution engine for 60+ languages',
       'Socket.io real-time sync with auto-save every 30 seconds',
@@ -33,7 +33,7 @@ const projects = [
     num:         '02',
     title:       'NeuroScan',
     subtitle:    'AI Brain Tumor MRI Classifier',
-    description: 'Trained EfficientNet-B0, ResNet18, and a custom CNN on 7,200 MRI images — achieving 98.31% accuracy. Transfer learning fine-tuning improved from an 81.62% baseline. Grad-CAM heatmaps provide explainability for clinical review.',
+    description: 'An AI diagnostic tool that classifies brain tumor MRI scans into four tumor types with 98.31% accuracy, then generates visual heatmaps highlighting exactly which regions of the scan influenced the diagnosis — built to support clinical decision-making.',
     highlights: [
       '98.31% classification accuracy across 4 tumor types on 7,200 MRI images',
       'Transfer learning with EfficientNet-B0 and ResNet18 — improved 16.69% over baseline CNN',
@@ -57,7 +57,7 @@ const projects = [
     num:         '03',
     title:       'VMS',
     subtitle:    'Vehicle Management System',
-    description: 'Full-stack garage management built with Java Spring Boot and React — replacing legacy handwritten logs with digital workflows for vehicles, appointments, invoices, and inventory across 8 modules.',
+    description: 'A digital garage management system for auto shops — replacing handwritten logs with a full workflow for booking appointments, tracking vehicles from intake to completion, generating PDF invoices, and controlling staff access by role.',
     highlights: [
       'JWT stateless auth, BCrypt hashing, RBAC — Admin, Mechanic, Receptionist',
       'Vehicle, customer, and mechanic CRUD — search, filter, and soft delete',
@@ -81,7 +81,7 @@ const projects = [
     num:         '04',
     title:       'IndiEstate',
     subtitle:    'Real Estate Marketplace',
-    description: 'Full-featured real estate marketplace with Google OAuth2 + JWT auth, WhatsApp-style real-time messaging with read receipts, EMI calculator, and advanced search with rate limiting security.',
+    description: 'A real estate marketplace where buyers can search and filter property listings, message sellers in real time with delivery and read receipts, and estimate monthly payments using a built-in mortgage calculator with an amortisation breakdown.',
     highlights: [
       'Google OAuth2 + JWT dual-layer auth with secure session management',
       'WhatsApp-style messaging with real-time delivery and read receipts via Socket.io',
@@ -105,7 +105,7 @@ const projects = [
     num:         '05',
     title:       'ChargeIT',
     subtitle:    'EV Charging Station Locator',
-    description: 'Live full-stack EV charging station discovery platform — global search, community reviews, real-time availability, and a full Admin Dashboard. Built as a 3-person team collaboration.',
+    description: 'A community-driven EV charging station finder where drivers search by city, charger type, and rating — then read and leave reviews on stations they\'ve used. Built collaboratively by a team of three.',
     highlights: [
       'Global search by city, country, charger type (AC / DC / Tesla), and minimum rating',
       'Firebase Auth — Email / Password + Google Sign-In',
@@ -129,7 +129,7 @@ const projects = [
     num:         '06',
     title:       'ArtFinder',
     subtitle:    'Android Art Discovery App',
-    description: 'Native Android app for discovering artworks from the Art Institute of Chicago — Google Maps integration, offline persistence with Room DB, Firebase auth, and a badge reward system.',
+    description: 'A native Android app for exploring artworks from the Art Institute of Chicago — browse and search the collection, photograph pieces you visit on a live map, and earn badges as your point score grows.',
     highlights: [
       'Art Institute of Chicago Public API — infinite scroll + search by name',
       'Google Maps: green markers (visited) / orange (unvisited)',
