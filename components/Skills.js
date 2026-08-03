@@ -10,22 +10,26 @@ const skillGrid = [
   },
   {
     id: 1, num: '02', category: 'Backend', xp: 82, level: 'Lv.8',
-    skills: ['Node.js', 'Express.js', 'Fastify', 'FastAPI', 'Spring Boot', 'REST APIs', 'Socket.io', 'JWT'],
+    skills: ['Node.js', 'Express.js', 'Fastify', 'FastAPI', 'Spring Boot', 'Python', 'SQL', 'REST APIs', 'Socket.io', 'JWT'],
   },
   {
     id: 2, num: '03', category: 'Database', xp: 76, level: 'Lv.7',
     skills: ['PostgreSQL', 'MongoDB', 'Supabase', 'Firebase', 'Prisma ORM', 'Redis', 'Room DB', 'Hibernate'],
   },
   {
-    id: 3, num: '04', category: 'Cloud & DevOps', xp: 68, level: 'Lv.6',
+    id: 3, num: '04', category: 'Data & Analytics', xp: 74, level: 'Lv.7',
+    skills: ['SQL Server', 'PostgreSQL', 'Apache Spark (PySpark)', 'Pandas', 'ETL / Data Pipelines', 'Data Modeling', 'Power BI', 'Tableau'],
+  },
+  {
+    id: 4, num: '05', category: 'Cloud & DevOps', xp: 68, level: 'Lv.6',
     skills: ['AWS (EC2, S3, Lambda)', 'Docker', 'GitHub Actions', 'CI/CD', 'Vercel', 'Render', 'Git / GitHub', 'Maven'],
   },
   {
-    id: 4, num: '05', category: 'AI & ML', xp: 72, level: 'Lv.7',
+    id: 5, num: '06', category: 'AI & ML', xp: 72, level: 'Lv.7',
     skills: ['PyTorch', 'EfficientNet-B0', 'ResNet18', 'Grad-CAM', 'HuggingFace', 'Claude API', 'Transfer Learning'],
   },
   {
-    id: 5, num: '06', category: 'Mobile', xp: 65, level: 'Lv.6',
+    id: 6, num: '07', category: 'Mobile', xp: 65, level: 'Lv.6',
     skills: ['Kotlin', 'Room DB', 'Firebase Auth', 'Google Maps SDK', 'Retrofit', 'Material Design 3'],
   },
 ]

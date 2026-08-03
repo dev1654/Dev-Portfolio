@@ -13,10 +13,10 @@ const roles = [
 ]
 
 const stats = [
-  { to: 3,    suffix: '+',  decimals: 0, label: 'Years Coding' },
-  { to: 6,    suffix: 'mo', decimals: 0, label: 'Internship @ Stackss' },
-  { to: 8.12, suffix: '',   decimals: 2, label: 'CGPA — Silver Oak' },
-  { to: 30,   suffix: '+',  decimals: 0, label: 'Skills & Technologies' },
+  { to: 4,    suffix: '+',   decimals: 0, label: 'Years Coding' },
+  { to: 2.5,  suffix: 'yrs', decimals: 1, label: 'Full-Time @ Stackss' },
+  { to: 8.12, suffix: '',    decimals: 2, label: 'CGPA — Silver Oak' },
+  { to: 30,   suffix: '+',   decimals: 0, label: 'Skills & Technologies' },
 ]
 
 function getGreeting() {
@@ -243,7 +243,7 @@ export default function Hero() {
           }}
         >
           Full Stack Developer, Humber Polytechnic graduate (Apr 2026).
-          Internship-proven. Building production apps across MERN, Spring Boot, and AI.
+          2.5 years of professional experience. Building production apps across MERN, Spring Boot, and AI.
         </motion.p>
 
         {/* CTAs */}

@@ -6,13 +6,13 @@ import CountUp from '@/components/CountUp'
 
 const interests = [
   'Full Stack Development', 'AI & Machine Learning', 'Cloud Computing',
-  'Android Development', 'Database Design', 'Software Engineering',
+  'Data Engineering & Analytics', 'Android Development', 'Database Design', 'Software Engineering',
 ]
 
 const stats = [
-  { to: 3,    suffix: '+',  decimals: 0, label: 'Years Coding' },
-  { to: 6,    suffix: 'mo', decimals: 0, label: 'Internship @ Stackss' },
-  { to: 8.12, suffix: '',   decimals: 2, label: 'CGPA — Silver Oak' },
+  { to: 4,    suffix: '+',   decimals: 0, label: 'Years Coding' },
+  { to: 2.5,  suffix: 'yrs', decimals: 1, label: 'Full-Time @ Stackss' },
+  { to: 8.12, suffix: '',    decimals: 2, label: 'CGPA — Silver Oak' },
 ]
 
 const currently = [
@@ -223,9 +223,10 @@ export default function About() {
               marginBottom: '56px',
               fontWeight:   300,
             }}>
-              During my 6-month internship at Stackss, I built and shipped MERN stack applications
-              across the full development lifecycle. Since then I have expanded into Java Spring Boot,
-              AI/ML with PyTorch, and cross-platform mobile — always shipping real, deployed products.
+              I spent 2.5 years at Stackss delivering full-stack products across the MERN stack —
+              designing REST APIs, optimizing SQL and NoSQL data models, building automated data
+              workflows in Python, and developing dashboards that turned raw data into decisions.
+              Since then I&apos;ve expanded into Java Spring Boot, AI/ML with PyTorch, and cross-platform mobile.
             </motion.p>
 
             {/* Focus areas — numbered index, replaces pill tags */}

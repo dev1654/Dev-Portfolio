@@ -135,7 +135,7 @@ export default function Contact() {
             maxWidth:     '500px',
           }}
         >
-          Open to full-time opportunities, internships, and freelance projects.
+          Open to full-time opportunities and freelance projects.
           Drop me a message and I&apos;ll get back to you within 24 hours.
         </motion.p>
 

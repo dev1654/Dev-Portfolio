@@ -128,7 +128,7 @@ export default function Footer() {
             lineHeight:  1.7,
             fontWeight:  300,
           }}>
-            Full Stack Developer in progress. Building scalable web apps with the MERN stack. Based in Toronto, Canada.
+            Software Developer with 4+ years of experience building web and data-driven solutions. Based in Toronto, Canada.
           </p>
         </div>
 
